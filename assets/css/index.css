@@ -1,0 +1,42 @@
+.container_index_top_boxes {
+	position: relative;
+	width: 400px;
+	/*background-color: #838C2B;*/
+	background-color: #E0E0E0;
+	padding-bottom: 40px;
+}
+#container_index_top_left {
+	float: left;
+}
+#container_index_top_right {
+	float: right;
+}
+.container_index_top_button {
+	font-size: 48px;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#container_index_top_left_button {	
+}
+#container_index_top_right_button {
+}
+.container_index_top_img {
+	width: 100%;
+	height: 300px;
+}
+#container_index_top_left_img {
+	background: url('../img/cloud_teach.png') no-repeat 25px 0px;
+}
+#container_index_top_right_img {
+	background: url('../img/cloud_learn.png') no-repeat 25px 0px;
+}
+#container_index_top_clear {
+	clear: both;
+}
+#container_index_bottom {
+	width: 860px;
+	background: #E0E0E0;
+	margin-top: 25px;
+	padding: 10px 20px;
+}
