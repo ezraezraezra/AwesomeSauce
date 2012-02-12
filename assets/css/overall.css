@@ -114,3 +114,6 @@ body {
 	text-decoration: underline;
 	color: #313133;
 }
+.container_clear {
+	clear: both;
+}
