@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<link rel="stylesheet" type="text/css" href="../assets/css/overall.css" />
+		<style type="text/css">
+			.modal {
+				position: relative;
+				width: 700px;
+				background-color: #E0E0E0;
+				margin-left: auto;
+				margin-right: auto;
+				z-index: 110;
+				padding: 30px;
+				padding-right: 40px;
+				font-family: Helvetica;
+				margin-top: 100px;
+			}
+			.modal_title_label {
+				font-size: 24px;
+				position: relative;
+				float: left;
+				line-height: 45px;
+			}
+			.modal_backdrop {
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #313133;
+				opacity: 0.8;
+				z-index: 100;
+			}
+			.modal_teach_title_input {
+				position: relative;
+				float: right;
+				width: 490px;
+				height: 40px;
+				font-size: 24px;
+				outline: none;
+				padding-left: 10px;
+			}
+			.modal_top {
+				background-color:transparent;
+				margin-bottom: 20px;
+			}
+			.modal_middle {
+				background-color: transparent;
+				margin-bottom: 20px;
+			}
+			.modal_description_label {
+				font-size: 18px;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.modal_description_input {
+				width: 330px;
+				height: 100px;
+				font-family: Helvetica;
+				font-size: 18px;
+				margin-left: 25px;
+				outline: none;
+			}
+			.modal_middle_left {
+				width: 380px;
+				position: relative;
+				float: left;
+				padding: 10px;
+			}
+			.modal_middle_right {
+				width: 280px;
+				height: 145px;
+				position: relative;
+				float: right;
+				background-color: #59595A;
+				padding: 10px;
+			}
+			.modal_date_button {
+				padding: 10px 20px;
+				width: 200px;
+				margin-left: auto;
+				margin-right: auto;
+				font-size: 20px;
+				margin-top: 30px;
+			}
+			.modal_technology_label {
+				font-size: 18px;
+				line-height: 35px;
+				margin-left: 10px;
+			}
+			.modal_middle_bottom {
+				margin-top: 20px;
+			}
+			.modal_teach_technology_input {
+				position: relative;
+				float: right;
+				width: 400px;
+				height: 30px;
+				font-size: 20px;
+				outline: none;
+				margin-right: 160px;
+				padding-left: 10px;
+			}
+			.modal_button_create {
+				width: 200px;
+				font-size: 36px;
+				padding: 10px 20px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modal">
+			<div class="modal_top">
+				<span class="modal_title_label">Workshop Title </span>
+				<input type="text" class="modal_teach_title_input modal_teach" />
+				<div class="container_clear"></div>
+			</div>
+			<div class="modal_middle">
+				<div class="modal_middle_top">
+					<div class="modal_middle_left">
+						<span class="modal_description_label">Description</span>
+						<textarea class="modal_description_input"></textarea>
+					</div>
+					<div class="modal_middle_right">
+						<span class="modal_description_label">Date &amp; Time</span>
+						<div class="modal_date_button button">Set<br/>Date &amp; Time</div>
+						<div class="container_clear"></div>
+					</div>
+					<div class="container_clear"></div>
+				</div>
+				<div class="modal_middle_bottom">
+					<span class="modal_technology_label">Technology </span>
+					<input type="text" class="modal_teach_technology_input modal_teach" placeholder="seperate with commas" />
+					<div class="container_clear"></div>
+				</div>
+				<div class="container_clear"></div>
+			</div>
+			<div class="modal_bottom">
+				<div class="modal_button_create button">Create</div>
+			</div>
+		</div>
+		<div class="modal_backdrop"></div>
+
+	</body>
+</html>
