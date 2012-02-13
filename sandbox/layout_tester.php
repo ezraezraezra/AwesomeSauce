@@ -8,16 +8,21 @@
 		<title>AwesomeSauce</title>
 		<link rel="stylesheet" type="text/css" href="../assets/css/overall.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/search_bar.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
 	</head>
 	<body>
 		<div id="container_main">
 			<?php include("../php/header.php"); ?>
 			<div id="container_middle">
-				<?php 
-					$display = 'search';
+				<?php
+					$display = $_GET['d']; 
+					// $display = 'teach';
 				
-					if($display == 'search') {
-						include('../php/search.php');
+					if($display == 'learn' || $display == 'teach') {
+						include('../php/scheduler.php');
 					} 
 					else {
 						include("../php/home.php");

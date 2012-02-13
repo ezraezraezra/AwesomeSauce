@@ -1,0 +1,26 @@
+#container_content_header_learn_search {
+	background-color: green;
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+}
+#container_content_header_learn_search_text {
+	position: relative;
+	height: 50px;
+	width: 450px;
+	float: left;
+	font-size: 28px;
+	outline: none;
+	padding-right: 60px;
+	padding-left: 10px;
+}
+#container_content_header_learn_search_submit {
+	position: relative;
+	background: url('../img/search.png') no-repeat;
+	height: 50px;
+	width: 50px;
+	border:none;
+	cursor:pointer;
+	margin-top: -53px;
+	margin-left: 472px;
+}
