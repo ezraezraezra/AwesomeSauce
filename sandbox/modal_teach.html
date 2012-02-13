@@ -106,12 +106,89 @@
 				margin-right: 160px;
 				padding-left: 10px;
 			}
-			.modal_button_create {
+			.modal_button_bottom {
 				width: 200px;
 				font-size: 36px;
 				padding: 10px 20px;
 				margin-left: auto;
 				margin-right: auto;
+			}
+			.modal_teach {
+				display: none;
+			}
+			.modal_learn {
+				display: block;
+			}
+			.modal_middle_bottom ul {
+				float: left;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+				list-style-type: none;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			.modal_middle_bottom li {
+				display: inline;
+				border-left: 1px solid #000000;
+				padding-left: 5px;
+				color: #3DA6F4;
+				font-size: 20px;
+				padding-right: 5px;
+			}
+			.modal_middle_bottom li.first_list {
+				border: none;
+			}
+			.modal_date {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+				color: #E0E0E0;
+				font-size: 24px;
+			}
+			.modal_day {
+				margin-top: 45px;
+			}
+			.modal_instructor {
+				width: 330px;
+				margin-top: 20px;
+				background-color: #59595A;
+				font-size: 24px;
+				padding:20px;
+				color: #E0E0E0;
+			}
+			.modaL_instructor_img {
+				width: 60px;
+				height: 60px;
+				background-color: transparent;
+				float: left;
+			}
+			.modal_instructor_right {
+			
+				background-color: transparent;
+				float: left;
+				padding-left: 10px;
+			}
+			.modal_instructor_right_good {
+				float: left;
+				
+			}
+			.modal_instructor_right_bad {
+				float: left;
+				margin-left: 20px;
+			}
+			.modal_instructor_right_good_img {
+				width: 25px;
+				height: 25px;
+				float: left;
+				padding-right: 5px;
+			}
+			.modal_instructor_right_bad_img {
+				width: 25px;
+				height: 25px;
+				float: left;
+				padding-right: 7px;
 			}
 		</style>
 	</head>
@@ -126,24 +203,49 @@
 				<div class="modal_middle_top">
 					<div class="modal_middle_left">
 						<span class="modal_description_label">Description</span>
-						<textarea class="modal_description_input"></textarea>
+						<textarea class="modal_description_input modal_teach"></textarea>
+						<textarea class="modal_description_input modal_learn" readonly="readonly">In this workshop we will go over advance JS techniques used to protect security. We will examine web email clients, like GMail. We might also add extra text to fill this box.</textarea>
 					</div>
 					<div class="modal_middle_right">
-						<span class="modal_description_label">Date &amp; Time</span>
-						<div class="modal_date_button button">Set<br/>Date &amp; Time</div>
+						<span class="modal_description_label modal_teach">Date &amp; Time</span>
+						<div class="modal_date_button button modal_teach">Set<br/>Date &amp; Time</div>
+						<span class="modal_day modal_date modal_learn">Tuesday, Feb 14th, 2012</span>
+						<span class="modal_time modal_date modal_learn">10:48 AM (PST)</span>
 						<div class="container_clear"></div>
 					</div>
 					<div class="container_clear"></div>
 				</div>
 				<div class="modal_middle_bottom">
-					<span class="modal_technology_label">Technology </span>
+					<span class="modal_technology_label modal_teach">Technology </span>
+					<ul class="modal_learn">
+						<li class="first_list">security</li>
+						<li>Web</li>
+						<li>PHP</li>
+						<li>JS</li>
+					</ul>
 					<input type="text" class="modal_teach_technology_input modal_teach" placeholder="seperate with commas" />
+					<div class="container_clear"></div>
+				</div>
+				<div class="modal_instructor modal_learn">
+					<img class="modaL_instructor_img" src="../assets/img/user_50.png" />
+					<div class="modal_instructor_right">
+						<div class="modal_instructor_right_name">Ezra Velazquez</div>
+						<div class="modal_instructor_right_good">
+							<img class="modal_instructor_right_good_img" src="../assets/img/rating_good.png" />
+							<span class="modal_instructor_right_good_number">168</span>
+						</div>
+						<div class="modal_instructor_right_bad">
+							<img class="modal_instructor_right_bad_img" src="../assets/img/rating_bad.png" />
+							<span class="modal_instructor_right_bad_number">2</span>
+						</div>
+					</div>
 					<div class="container_clear"></div>
 				</div>
 				<div class="container_clear"></div>
 			</div>
 			<div class="modal_bottom">
-				<div class="modal_button_create button">Create</div>
+				<div class="modal_button_bottom modal_teach button">Create</div>
+				<div class="modal_button_bottom modal_learn button">Register</div>
 			</div>
 		</div>
 		<div class="modal_backdrop"></div>
