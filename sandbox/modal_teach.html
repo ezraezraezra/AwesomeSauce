@@ -14,6 +14,7 @@
 				margin-right: auto;
 				z-index: 110;
 				padding: 30px;
+				padding-top: 10px;
 				padding-right: 40px;
 				font-family: Helvetica;
 				margin-top: 100px;
@@ -45,9 +46,11 @@
 				outline: none;
 				padding-left: 10px;
 			}
-			.modal_top {
+			.modal_layer_one {
 				background-color:transparent;
 				margin-bottom: 20px;
+				margin-top: 20px;
+				padding-left: 20px;
 			}
 			.modal_middle {
 				background-color: transparent;
@@ -98,12 +101,12 @@
 			}
 			.modal_teach_technology_input {
 				position: relative;
-				float: right;
+				float: left;
 				width: 400px;
 				height: 30px;
 				font-size: 20px;
 				outline: none;
-				margin-right: 160px;
+				margin-left: 36px;
 				padding-left: 10px;
 			}
 			.modal_button_bottom {
@@ -113,12 +116,7 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
-			.modal_teach {
-				display: none;
-			}
-			.modal_learn {
-				display: block;
-			}
+
 			.modal_middle_bottom ul {
 				float: left;
 				width: 100%;
@@ -190,15 +188,120 @@
 				float: left;
 				padding-right: 7px;
 			}
+			.modal_overall_title {
+				font-size: 40px;
+				font-weight: bold;
+			}
+			.modal_teach {
+				display: block;
+			}
+			.modal_learn {
+				display: none;
+			}
+			.modal_description_input_update {
+				width: 490px;
+				height: 100px;
+				float: right;
+				font-size: 24px;
+				outline: none;
+				padding-left: 10px;
+			}
+			.modal_instructor_update {
+				width: 505px;
+				background-color:transparent;
+				margin-right: 0px;
+				float: right;
+			}
+			.modal_instructor_name {
+				font-size: 24px;
+				background-color: transparent;
+				float: right;
+				width: 235px;
+				padding: 5px;
+				padding-top: 10px;
+			}
+			.modal_instructor_update_info {
+				float:left;
+				width: 300px;
+				background-color: transparent;
+			}
+			.modal_instructor_update_rating {
+				float: right;
+				width: 200px;
+				background-color: transparent;
+				padding-top:5px;
+			}
+			.modal_instructor_update_rating_good {
+				float: left;
+				margin-top: 10px;
+				font-size: 24px;
+				margin-left: 5px;
+				margin-right: 20px;
+			}
+			.modal_instructor_update_rating_bad {
+				float: left;
+				margin-top: 10px;
+				font-size: 24px;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+			.modal_instructor_update_img {
+				float: left;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="modal">
-			<div class="modal_top">
+			<span class="modal_overall_title">Create A Workshop</span>
+			<div class="modal_layer_one">
 				<span class="modal_title_label">Workshop Title </span>
 				<input type="text" class="modal_teach_title_input modal_teach" />
 				<div class="container_clear"></div>
 			</div>
+			<div class="modal_layer_one">
+				<span class="modal_title_label">Technology </span>
+				<input type="text" class="modal_teach_title_input modal_teach" placeholder="seperate with commas"/>
+				<div class="container_clear"></div>
+			</div>
+			<div class="modal_layer_one">
+				<span class="modal_title_label">Description </span>
+				<textarea class="modal_description_input_update"></textarea>
+				<div class="container_clear"></div>
+			</div>
+			<div class="modal_layer_one">
+				<span class="modal_title_label">Date &amp; Time </span>
+				<input type="text" class="modal_teach_title_input modal_teach" readonly="readonly" placeholder="click to set"/>
+				<div class="container_clear"></div>
+			</div>
+			
+			<!-- Display Instructor -->
+			<div class="modal_layer_one">
+				<span class="modal_title_label">Instructor</span>
+				<div class="modal_instructor_update">
+					<div class="modal_instructor_update_info">
+						<img src="../assets/img/user_50.png" class="modal_instructor_img_update" />
+						<div class="modal_instructor_name">Ezra Velazquez</div>
+					</div>
+					<div class="modal_instructor_update_rating">
+						<img class="modal_instructor_update_img" src="../assets/img/rating_good.png">
+						<div class="modal_instructor_update_rating_good">150</div>
+						<img class="modal_instructor_update_img" src="../assets/img/rating_bad.png">
+						<div class="modal_instructor_update_rating_bad">2</div>
+					</div>
+					
+					<div class="container_clear"></div>
+				</div>
+				<div class="container_clear"></div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+<!--			
 			<div class="modal_middle">
 				<div class="modal_middle_top">
 					<div class="modal_middle_left">
@@ -217,13 +320,14 @@
 				</div>
 				<div class="modal_middle_bottom">
 					<span class="modal_technology_label modal_teach">Technology </span>
+					<input type="text" class="modal_teach_technology_input modal_teach" placeholder="seperate with commas" />
 					<ul class="modal_learn">
 						<li class="first_list">security</li>
 						<li>Web</li>
 						<li>PHP</li>
 						<li>JS</li>
 					</ul>
-					<input type="text" class="modal_teach_technology_input modal_teach" placeholder="seperate with commas" />
+					
 					<div class="container_clear"></div>
 				</div>
 				<div class="modal_instructor modal_learn">
@@ -243,6 +347,7 @@
 				</div>
 				<div class="container_clear"></div>
 			</div>
+		-->
 			<div class="modal_bottom">
 				<div class="modal_button_bottom modal_teach button">Create</div>
 				<div class="modal_button_bottom modal_learn button">Register</div>
