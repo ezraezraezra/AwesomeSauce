@@ -13,6 +13,9 @@
 	color: #313133;
 	cursor: pointer;
 }
+	.container_clear {
+		clear: both;
+	}
 		
 		
 		
@@ -71,7 +74,28 @@
 				float: right;
 				background-image: url('../assets/img/rating_bad.png');
 			}
-			.instructor_name {
+			.students_container {
+				background-color: #E0E0E0;
+				margin-top: 30px;
+				width: 360px;
+				padding: 10px;
+				padding-bottom: 20px;
+			}
+			.student_container {
+				width: 150px;
+				float: left; 
+				padding: 5px 15px;
+				position: relative;
+			}
+			.student_name {
+				font-size: 12px;
+			}
+			.video_feed_student {
+				width: 150px;
+				height: 100px;
+				background-color: black;
+			}
+			.classroom_labels {
 				font-weight: bold;
 				font-family: Helvetica;
 				text-align: left;
@@ -83,12 +107,31 @@
 		<div class="classroom_container">
 			<div class="classroom_left_container classroom_inner_container">
 				<div class="instructor_container">
-					<span class="instructor_name">Ezra Velazquez</span>
+					<span class="instructor_name classroom_labels">Ezra Velazquez</span>
 					<div class="video_feed_instructor"></div>
 					<div class="instructor_button_container">
 						<div class="instructor_rate_button instructor_good_img button">70%</div>
 						<div class="instructor_rate_button instructor_bad_img button">30%</div>
 					</div>
+				</div>
+				<div class="students_container">
+					<div class="student_container">
+						<span class="student_name classroom_labels">Paul McCartney</span>
+						<div class="video_feed_student"></div>
+					</div>
+					<div class="student_container">
+						<span class="student_name classroom_labels">Ringo Starr</span>
+						<div class="video_feed_student"></div>
+					</div>
+					<div class="student_container">
+						<span class="student_name classroom_labels">John Lennon</span>
+						<div class="video_feed_student"></div>
+					</div>
+					<div class="student_container">
+						<span class="student_name classroom_labels">George Harrison</span>
+						<div class="video_feed_student"></div>
+					</div>
+					<div class="container_clear"></div>
 				</div>
 			</div>
 <!-- 			<div class="classroom_right_container classroom_inner_container"></div> -->
