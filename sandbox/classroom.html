@@ -4,8 +4,94 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>New Web Project</title>
+		<style type="text/css">
+			.button {
+	background-color: #F2AA00;
+	font-weight: bold;
+	font-family: Helvetica;
+	text-align: center;
+	color: #313133;
+	cursor: pointer;
+}
+		
+		
+		
+			.classroom_container {
+				width: 900px;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: #09C;
+				height: 100px;
+			}
+			.classroom_inner_container {
+				width: 50%;
+				height: 100px;
+				background-color: grey;
+				float: left;
+				position: relative
+			}
+			.instructor_container {
+				width: 300px;
+				background-color:#E0E0E0;
+				padding: 30px 40px 40px 40px;
+			}
+			.video_feed_instructor {
+				width: 300px;
+				height: 250px;
+				background: black;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 5px;
+			}
+			.instructor_button_container {
+				width: 300px;
+				height: 50px;
+				margin-top: 10px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.instructor_rate_button {
+				width: 135px;
+				height: 50px;
+				background-color: #F2AA00;
+				background-repeat: no-repeat;
+				background-position: 5px 5px;
+				position: relative;
+				line-height: 50px;
+				font-size: 40px;
+				text-align: right;
+				padding-right: 5px;
+			}
+			.instructor_good_img {
+				float: left;
+				background-image: url('../assets/img/rating_good.png');
+				
+			}
+			.instructor_bad_img {
+				float: right;
+				background-image: url('../assets/img/rating_bad.png');
+			}
+			.instructor_name {
+				font-weight: bold;
+				font-family: Helvetica;
+				text-align: left;
+				color: #313133;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>New Web Project Page</h1>
+		<div class="classroom_container">
+			<div class="classroom_left_container classroom_inner_container">
+				<div class="instructor_container">
+					<span class="instructor_name">Ezra Velazquez</span>
+					<div class="video_feed_instructor"></div>
+					<div class="instructor_button_container">
+						<div class="instructor_rate_button instructor_good_img button">70%</div>
+						<div class="instructor_rate_button instructor_bad_img button">30%</div>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="classroom_right_container classroom_inner_container"></div> -->
+		</div>
 	</body>
 </html>
