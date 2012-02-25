@@ -14,6 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/classroom.css" />
 	</head>
 	<body>
 		
@@ -29,6 +30,9 @@
 					if($display == 'learn' || $display == 'teach') {
 						include('../php/scheduler.php');
 					} 
+					else if($display == 'classroom') {
+						include('../php/classroom.php');
+					}
 					else {
 						include("../php/home.php");
 					}
