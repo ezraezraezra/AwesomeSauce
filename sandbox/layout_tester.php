@@ -1,4 +1,5 @@
 <?php
+	$display = $_GET['d']; 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,15 +13,19 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
 	</head>
 	<body>
+		
 		<div id="container_main">
-			<?php include("../php/header.php"); ?>
+			<?php 
+				if($display == 'learn' || $display == 'teach') {
+					include("../php/modal.php");
+				}
+				include("../php/header.php");
+			?>
 			<div id="container_middle">
 				<?php
-					$display = $_GET['d']; 
-					// $display = 'teach';
-				
 					if($display == 'learn' || $display == 'teach') {
 						include('../php/scheduler.php');
 					} 

@@ -14,6 +14,7 @@
 	
 	<div id="container_content_body">
 		<?php 
+		
 			if($display == 'learn') {
 				$group_name = 'Search results for: ';
 				$group_name_sub = 'Security JS';
