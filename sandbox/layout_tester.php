@@ -15,9 +15,11 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/classroom.css" />
+		<script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="../js/event_listener.js"></script>
 	</head>
 	<body>
-		
+		<?php include("../php/fbook.php"); ?>
 		<div id="container_main">
 			<?php 
 				if($display == 'learn' || $display == 'teach') {
