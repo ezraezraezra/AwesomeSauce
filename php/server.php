@@ -82,31 +82,88 @@
 			$arr = array('status'=>'200', 'message'=>'workshop created');
 			return $arr;
 		}
+		
+		function getWorkshops($query,$type) {
+			switch($type) {
+				// Get all workshops
+				case 'all':
+					
+					break;
+				// Get search results
+				case 'search':
+					break;
+			}
+		}
+		
+		function getWorkshop() {
+			#SELECT ALL WORKSHOPS W/INSTRUCTOR INFO
+			$request = "SELECT w.id AS workshop_id, w.date, w.title, w.description, w.title, w.tags, i.id AS instructor_id, i.name, i.fb_id, i.rating_good, i.rating_bad FROM workshop AS w, instructor AS i, workshop_X_instructor AS wXi WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id ORDER BY date DESC, title ASC;";
+			$request = $this->submit_info($request, $this->connection, true);
+			
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			$workshop = array();
+			
+			foreach ($rows as $row):
+				$workshop[] = array("id"=>"{$row['workshop_id']}", 
+									"date"=>"{$row['date']}", 
+									"title"=>"{$row['title']}", 
+									"description"=>"{$row['description']}",
+									"tags"=>"{$row['tags']}",
+									"instructor"=> array("id"=>"{$row['instructor_id']}",
+														 "name"=>"{$row['name']}",
+														 "fb_id"=>"{$row['fb_id']}",
+														 "rating_good"=>"{$row['rating_good']}",
+														 "rating_bad"=>"{$row['rating_bad']}"
+														)
+									);
+			endforeach;
+			
+			return $workshop;
+		}
 	}
 	
-	$operation = $_GET['o'];
-	$results = "";
-	
+//	$operation = $_GET['o'];
+//	$results = "";
+
+/*	
 	$server = new Server();
 	$server->startApp();
-	// $results = json_encode($server->function to call);
-	switch($operation) {
-		case "add":
-			$date = mysql_real_escape_string($_GET['d']);
-			$title = mysql_real_escape_string($_GET['t']);
-			$desc = mysql_real_escape_string($_GET['de']);
-			$inst_fb_id = mysql_real_escape_string($_GET['i']);
-			$inst_name = mysql_real_escape_string($_GET['n']);
-			
-			$results = json_encode($server->addWorkshop($date, $title, $desc, $inst_fb_id, $inst_name));
-			break;
-		default:
-			// This should never be reached
-			$results = json_encode(array('status'=>'400', 'message'=>'bad operation given'));
-			break;
-	}
+ */
+
+ 	/*
+	 * TESTING
+	 * get all workshops
+	 */
+
+/*
+	$response = array("status"=>200,"response"=>$server->getWorkshop());
+	$results = json_encode($response);
+*/	
 	
+	// // $results = json_encode($server->function to call);
+	// switch($operation) {
+		// case "get":
+			// $query = mysql_real_escape_string($_GET['q']);
+			// $type = mysql_real_escape_string($_GET['t']);
+			// $results = json_encode($server->getWorkshops($query,$type));
+			// break;
+		// // case "add":
+			// // $date = mysql_real_escape_string($_GET['d']);
+			// // $title = mysql_real_escape_string($_GET['t']);
+			// // $desc = mysql_real_escape_string($_GET['de']);
+			// // $inst_fb_id = mysql_real_escape_string($_GET['i']);
+			// // $inst_name = mysql_real_escape_string($_GET['n']);
+// // 			
+			// // $results = json_encode($server->addWorkshop($date, $title, $desc, $inst_fb_id, $inst_name));
+			// // break;
+		// default:
+			// // This should never be reached
+			// $results = json_encode(array('status'=>'400', 'message'=>'bad operation given'));
+			// break;
+	// }
+
+/*	
 	$server->closeApp();
 	echo $results;
-	
+*/	
 ?>

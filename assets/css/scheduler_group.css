@@ -101,3 +101,6 @@
 .container_content_body_group_result_info_title {
 	font-size: 20px;
 }
+.hidden_info {
+	display: none;
+}

@@ -5,7 +5,7 @@
 var LISTENER = function() {
 	var DEBUG = true;
 	var teach_view = 'layout_tester.php?d=teach';
-	var learn_view = 'layout_tester.php?d=learn';
+	var learn_view = 'layout_tester.php?d=learn&q=all';
 	
 	var $button = '';
 	var $modal = '';
@@ -52,7 +52,8 @@ var LISTENER = function() {
 			window.location = new_view;
 		}
 		
-		_facebookLoginClick(function() {setURL();});
+		//_facebookLoginClick(function() {setURL();});
+		setURL();
 	}
 	
 	function _displayModal(view) {

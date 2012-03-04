@@ -19,7 +19,7 @@
 		<script type="text/javascript" src="../js/event_listener.js"></script>
 	</head>
 	<body>
-		<?php include("../php/fbook.php"); ?>
+<!--		<?php include("../php/fbook.php"); ?> -->
 		<div id="container_main">
 			<?php 
 				if($display == 'learn' || $display == 'teach') {
