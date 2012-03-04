@@ -5,7 +5,7 @@
 var LISTENER = function() {
 	var DEBUG = true;
 	var teach_view = 'layout_tester.php?d=teach';
-	var learn_view = 'layout_tester.php?d=learn&q=all';
+	var learn_view = 'layout_tester.php?d=learn';
 	
 	var $button = '';
 	var $modal = '';
@@ -95,17 +95,33 @@ var LISTENER = function() {
 				break;
 			case 'Create':
 				_createWorkshop();
-				break;		
+				break;	
 		}
+	}
+	
+	function _formListener(e, $object) {
+		e.preventDefault();
+		switch($object.attr("id")) {
+			case 'container_content_header_learn_search_form':
+				window.location = learn_view + "&q=" + $object.children("[type=text]").val();
+				break;
+			default:
+				console.log($object);
+				break;
+		}
+		
 	}
 	
 	function init() {
 		$button = $('.button');
 		$modal = $('.modal_container');
 		$modal_backdrop = $('.modal_backdrop');
+		$form = $('form');
 		
 		$button.on("click", function() { _buttonListener($(this)); });
 		$modal_backdrop.on("click", function() { _hideModal(); });
+		//$("form").submit(function(e) { e.preventDefault(); });
+		$form.on("submit", function(e) { _formListener(e,$(this)); });
 	}
 	
 	$(document).ready(function() {

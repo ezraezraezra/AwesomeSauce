@@ -17,7 +17,8 @@
 		
 			if($display == 'learn') {
 				$group_name = 'Search results for: ';
-				$group_name_sub = 'Security JS';
+				//$group_name_sub = 'Security JS';
+				$group_name_sub = $_GET['q'];
 				include('scheduler_group.php');
 			}
 			else {

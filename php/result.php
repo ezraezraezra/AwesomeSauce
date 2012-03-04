@@ -4,16 +4,30 @@
 	$server = new Server();
 	$server->startApp();
 	
-	$query = $_GET['q'];
-	switch($query) {
-		case 'blah':
-			break;
-		default:
-			// Display all results FOR TESTING ONLY
-			$results = $server->getWorkshop();
-			displayPage($results);
-			break;
+	// Learn-View Search Results
+	if(!strcasecmp($_GET['d'], 'learn')) {
+		if(!strcasecmp($_GET['q'], '') OR !strcasecmp($_GET['q'], 'all')) {
+			$results = $server->getWorkshop('learn','all');
+		}
+		else {
+			$results = $server->getWorkshop('learn',$_GET['q']);
+		}
 	}
+	// Teacher-View Search Results
+	else if (!strcasecmp($_GET['d'], 'teach')) {
+		echo 'Teacher-View Search Results<br/>';
+	}
+	
+	// $query = $_GET['q'];
+	// switch($query) {
+		// case 'blah':
+			// break;
+		// default:
+			// // Display all results FOR TESTING ONLY
+			// $results = $server->getWorkshop('learn','all');
+			displayPage($results);
+			// break;
+	// }
 	
 	$server->closeApp();
 	
