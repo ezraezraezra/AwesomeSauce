@@ -1,4 +1,5 @@
 <?php
+    include("../php/fbook.php");
 	$display = $_GET['d']; 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -19,7 +20,7 @@
 		<script type="text/javascript" src="../js/event_listener.js"></script>
 	</head>
 	<body>
-<!--		<?php include("../php/fbook.php"); ?> -->
+		<?php printFacebokHTML(); ?>
 		<div id="container_main">
 			<?php 
 				if($display == 'learn' || $display == 'teach') {

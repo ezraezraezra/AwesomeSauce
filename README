@@ -1,15 +1,16 @@
 /**********************************************************************
  * Developer:   Ezra Velazquez http://ezraezraezra.com
  * 
- * Date:        February 2012
+ * Date:        March 2012
  *
  * Title:       AwesomeSauce      URL coming soon
  * Description: Coming soon
  *
  * Tech:        Facebook API, JavaScript, jQuery, PHP
- * Last Update: February 26th, 2012
+ * Last Update: March 4th, 2012
  ***********************************************************************/
  
  NOTE: *** 3rd PARTY LIBRARIES HAVE BEEN OMITTED FROM THE PUBLIC REPO ***
  
- Libraries Omitted:  jQuery     http://www.jquery.com
+ Libraries Omitted:  jQuery        http://www.jquery.com
+                     FBook PHP SDK https://github.com/facebook/facebook-php-sdk

@@ -1,7 +1,7 @@
 <?php
 	include('result.php');
 	
-	function displaySchedulerGroup($group_name, $group_name_sub, $view, $query) {
+	function displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id) {
 		$print = '';
 		$print.='<div class="container_content_body_group">';
 		$print.='<div class="container_content_body_group_name">';
@@ -9,7 +9,7 @@
 		$print.='</div>';
 	
 		$print.='<div class="container_content_body_group_results">';
-		$print.=displayResult($view, $query);
+		$print.=displayResult($view, $query, $instructor_id);
 		$print.='</div>';
 		$print.='</div>';
 		

@@ -1,5 +1,5 @@
 <?php
-    header('Content-type: application/json; charset=utf-8');
+    //header('Content-type: application/json; charset=utf-8');
 	require 'info.php';
 	
 	class Server {
@@ -84,7 +84,7 @@
 		}
 		
 		
-		function getWorkshop($view, $query) {
+		function getWorkshop($view, $query, $instructor_id) {
 			if(!strcasecmp($query, '')) {
 				$query = 'all';
 			}
@@ -109,7 +109,7 @@
 					$conditional = '<';
 				}
 				
-				$request_query = " AND date ".$conditional." '".$mysqldate."'";
+				$request_query = " AND w.date ".$conditional." '".$mysqldate."' AND i.fb_id='".$instructor_id."'";
 			}
 			
 			

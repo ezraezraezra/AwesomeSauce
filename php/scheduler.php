@@ -23,22 +23,26 @@
 				
 				$view = 'learn';
 				$query = $_GET['q'];
+				$instructor_id = '0';
 				
-				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
 			}
 			else {
+				//$instructor_id = $facebook_userId;
+				$instructor_id = '1088730508';
+				
 				$group_name = 'My Upcoming Classes';
 				$group_name_sub = '';
 				$view = 'teach';
 				$query = 'future';
-				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
 				
 				
 				$group_name = 'My Previous Classes';
 				$group_name_sub = '';
 				$view = 'teach';
 				$query = 'past';
-				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
 			}
 		?>
 	</div>

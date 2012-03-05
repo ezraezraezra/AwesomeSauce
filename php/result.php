@@ -2,10 +2,10 @@
 	//include('server.php');
 	include('server.php');
 	
-	function displayResult($view, $query) {
+	function displayResult($view, $query, $instructor_id) {
 		$server = new Server();
 		$server->startApp();
-		$results = $server->getWorkshop($view, $query);
+		$results = $server->getWorkshop($view, $query, $instructor_id);
 		
 		$return = displayPage($results);
 		$server->closeApp();
