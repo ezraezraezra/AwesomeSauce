@@ -16,8 +16,12 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/classroom.css" />
-		<script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../assets/css/lib/jquery-ui-timepicker-addon.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/lib/smoothness/jquery-ui-1.8.18.custom.css">
+		<script type="text/javascript" src="../js/lib/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-ui-1.8.18.custom.min.js"></script>
 		<script type="text/javascript" src="../js/event_listener.js"></script>
+		<script type="text/javascript" src="../js/lib/jquery-ui-timepicker-addon.js"></script>
 	</head>
 	<body>
 		<?php printFacebokHTML(); ?>

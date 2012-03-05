@@ -11,6 +11,8 @@ var LISTENER = function() {
 	var $modal = '';
 	var $modal_backdrop = '';
 	
+	var date_picker_status = false;
+	
 	function log(message) {
 		if(DEBUG === true) {
 			console.log(message);
@@ -56,15 +58,60 @@ var LISTENER = function() {
 		setURL();
 	}
 	
-	function _displayModal(view) {
+	function _displayModal(view, $object) {
 		if(view == 'fill') {
 			log('modal:fill was called');
+			//set modal to be filled
+			$(".modal_learn").css("display", "none");
+			$(".modal_teach").css("display", "block");
+			$(".modal form :input").removeAttr('readonly');
+			$(".modal form :input[name=date]").attr('readonly', true);
+			$(".intructor_field").css("display", "none");
+			
+			
+			
 			$modal.fadeIn();
 		}
 		else if(view == 'view') {
 			log('modal:view was called');
+			
+			//set modal to read-only
+			$(".modal_teach").css("display", "none");
+			$(".modal_learn").css("display", "block");
+			$(".modal form :input").attr('readonly', true);
+			$(".intructor_field").css("display", "block");
+			
+			$parent = $object.parent();
+			
+			//Title
+			$(".modal form :input[name=title]").val($parent.children(":nth-child(3)").children(":nth-child(1)").text());
+			
+			//Technology
+			var tech_list = [];
+			$parent.children(":nth-child(3)").children(":nth-child(2)").find("li").each(function() { tech_list.push($(this).text()) });
+			console.log(tech_list);
+			var tech_list_string = tech_list.join(", ");
+			$(".modal form :input[name=technology]").val(tech_list_string);
+			
+			//Description
+			$(".modal form :input[name=descrition]").val($parent.children(":nth-child(5)").text());
+			
+			//Date & Time
+			var date = $parent.children(":nth-child(1)").children(":nth-child(1)").text();
+			var time = $parent.children(":nth-child(1)").children(":nth-child(2)").text();
+			$(".modal form :input[name=date]").val(date + " @ " + time);
+			
+			//Instructor
+			var image_src = $parent.children(":nth-child(2)").children(":nth-child(1)").attr("src");
+			$(".modal_instructor_img_update").attr("src", image_src);
+			$(".modal_instructor_name").text($parent.children(":nth-child(2)").children(":nth-child(2)").text());
+			$(".modal_instructor_update_rating_good").text($parent.children(":nth-child(2)").children(":nth-child(2)").attr("rg"));
+			$(".modal_instructor_update_rating_bad").text($parent.children(":nth-child(2)").children(":nth-child(2)").attr("rb"));
+			
+			
 			$modal.fadeIn();
 		}
+		
 	}
 	
 	function _createWorkshop() {
@@ -75,7 +122,12 @@ var LISTENER = function() {
 	
 	function _hideModal() {
 		log('modal: need to clean values');
+		_cleanModal();
 		$modal.fadeOut();
+	}
+	
+	function _cleanModal() {
+		$(".modal form :input").val("");
 	}
 	
 	function _buttonListener($object) {
@@ -88,10 +140,10 @@ var LISTENER = function() {
 				_homeListener('learn');
 				break;
 			case 'Post New Workshop':
-				_displayModal('fill');
+				_displayModal('fill', $object);
 				break;
 			case 'More Info':
-				_displayModal('view');
+				_displayModal('view', $object);
 				break;
 			case 'Create':
 				_createWorkshop();
@@ -112,6 +164,15 @@ var LISTENER = function() {
 		
 	}
 	
+	function _dateTimeListener($object, initial) {
+		if($(".intructor_field").css("display") == 'none') {
+			
+		}
+		else {
+			$("#ui-datepicker-div").css("display", "none");
+		}
+	}
+	
 	function init() {
 		$button = $('.button');
 		$modal = $('.modal_container');
@@ -122,6 +183,9 @@ var LISTENER = function() {
 		$modal_backdrop.on("click", function() { _hideModal(); });
 		//$("form").submit(function(e) { e.preventDefault(); });
 		$form.on("submit", function(e) { _formListener(e,$(this)); });
+		
+		$(".modal form :input[name=date]").click(function() { _dateTimeListener($(this), true); });
+		$(".modal form :input[name=date]").datetimepicker({ ampm: true, stepMinute: 15, timeFormat: 'h:mm TT' });
 	}
 	
 	$(document).ready(function() {

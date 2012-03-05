@@ -7,10 +7,11 @@
  * Description: Coming soon
  *
  * Tech:        Facebook API, JavaScript, jQuery, PHP
- * Last Update: March 4th, 2012
+ * Last Update: March 5th, 2012
  ***********************************************************************/
  
  NOTE: *** 3rd PARTY LIBRARIES HAVE BEEN OMITTED FROM THE PUBLIC REPO ***
  
  Libraries Omitted:  jQuery        http://www.jquery.com
                      FBook PHP SDK https://github.com/facebook/facebook-php-sdk
+                     Timepicker    http://trentrichardson.com/examples/timepicker/
