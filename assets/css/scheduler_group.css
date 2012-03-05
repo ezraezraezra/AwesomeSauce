@@ -104,3 +104,6 @@
 .hidden_info {
 	display: none;
 }
+.container_content_body_group_result_user_img {
+	background: url('../img/user_50.png') 0px 0px no-repeat;
+}

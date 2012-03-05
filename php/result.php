@@ -1,35 +1,17 @@
 <?php
+	//include('server.php');
 	include('server.php');
 	
-	$server = new Server();
-	$server->startApp();
-	
-	// Learn-View Search Results
-	if(!strcasecmp($_GET['d'], 'learn')) {
-		if(!strcasecmp($_GET['q'], '') OR !strcasecmp($_GET['q'], 'all')) {
-			$results = $server->getWorkshop('learn','all');
-		}
-		else {
-			$results = $server->getWorkshop('learn',$_GET['q']);
-		}
-	}
-	// Teacher-View Search Results
-	else if (!strcasecmp($_GET['d'], 'teach')) {
-		echo 'Teacher-View Search Results<br/>';
-	}
-	
-	// $query = $_GET['q'];
-	// switch($query) {
-		// case 'blah':
-			// break;
-		// default:
-			// // Display all results FOR TESTING ONLY
-			// $results = $server->getWorkshop('learn','all');
-			displayPage($results);
-			// break;
-	// }
-	
-	$server->closeApp();
+	function displayResult($view, $query) {
+		$server = new Server();
+		$server->startApp();
+		$results = $server->getWorkshop($view, $query);
+		
+		$return = displayPage($results);
+		$server->closeApp();
+		
+		return $return;
+	}	
 	
 	function dateFormatter($mysql_date) {
 		// Get Date
@@ -60,9 +42,14 @@
 		return $tag_display;
 	}
 	
+	function getImage($id) {
+		//$user_img = '../assets/img/user_50.png';
+		return "https://graph.facebook.com/$id/picture";	
+		
+	}
+	
 	function displayPage($results) {
-		$user_img = '../assets/img/user_50.png';
-		//printf($results);
+		
 		$print = '';
 		for($i = 0; $i < count($results); $i++) {
 			$print.='<div class="container_content_body_group_result" wid="'.$results[$i]['id'].'">';
@@ -71,7 +58,7 @@
 			$print.='<span class="container_content_body_group_result_date_time">'.timeFormatter($results[$i]['date']). " (PST)".'</span>';
 			$print.='</div>';
 			$print.='<div class="container_content_body_group_result_user result_seperator">';
-			$print.='<img class="container_content_body_group_result_user_img" src="'.$user_img.'"/>';
+			$print.='<img class="container_content_body_group_result_user_img" src="'.getImage($results[$i]['instructor']['fb_id']).'"/>';
 			$print.='<span class="container_content_body_group_result_user_name" fid="'.$results[$i]['instructor']['fb_id'].'" rg="'.$results[$i]['instructor']['rating_good'].'" rb="'.$results[$i]['instructor']['rating_bad'].'">'.$results[$i]['instructor']['name'].'</span>';
 			$print.='</div>';
 			$print.='<div class="container_content_body_group_result_info result_seperator">';
@@ -87,27 +74,7 @@
 			$print.='</div>';
 		}
 		
-		printf($print);
+		return $print;
 	}
 	
 ?>
-<!--
-<div class="container_content_body_group_result">
-	<div class="container_content_body_group_result_date result_seperator">
-		<span class="container_content_body_group_result_date_day"><?php echo $day_word.", ".$month." ".$day_number.$day_abr.", ".$year; ?></span>
-		<span class="container_content_body_group_result_date_time"><?php echo $hour.":".$minute." ".$type. " (".$zone.")"; ?></span>
-	</div>
-	<div class="container_content_body_group_result_user result_seperator">
-		<img class="container_content_body_group_result_user_img" src="<?php echo $user_img; ?>"/>
-		<span class="container_content_body_group_result_user_name"><?php echo $user_first." ".$user_last; ?></span>
-	</div>
-	<div class="container_content_body_group_result_info result_seperator">
-		<span class="container_content_body_group_result_info_title"><?php echo $title; ?></span>
-		<ul>
-			<?php echo $tag_display; ?>
-		</ul>
-	</div>
-	<div class="container_content_body_group_result_more button">More Info</div>
-	<div class="container_clear"></div>
-</div>
--->

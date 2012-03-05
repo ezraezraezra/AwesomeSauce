@@ -1,4 +1,5 @@
 <?php
+	include('scheduler_group.php');
 ?>
 <div id="container_content" class="container_bodies">
 	<div id="container_content_header">
@@ -19,16 +20,25 @@
 				$group_name = 'Search results for: ';
 				//$group_name_sub = 'Security JS';
 				$group_name_sub = $_GET['q'];
-				include('scheduler_group.php');
+				
+				$view = 'learn';
+				$query = $_GET['q'];
+				
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
 			}
 			else {
 				$group_name = 'My Upcoming Classes';
 				$group_name_sub = '';
-				include('scheduler_group.php');
+				$view = 'teach';
+				$query = 'future';
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
+				
 				
 				$group_name = 'My Previous Classes';
 				$group_name_sub = '';
-				include('scheduler_group.php');
+				$view = 'teach';
+				$query = 'past';
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query);
 			}
 		?>
 	</div>

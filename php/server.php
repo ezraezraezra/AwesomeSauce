@@ -83,19 +83,11 @@
 			return $arr;
 		}
 		
-		function getWorkshops($query,$type) {
-			switch($type) {
-				// Get all workshops
-				case 'all':
-					
-					break;
-				// Get search results
-				case 'search':
-					break;
-			}
-		}
 		
 		function getWorkshop($view, $query) {
+			if(!strcasecmp($query, '')) {
+				$query = 'all';
+			}
 			// Learn-View	
 			if(!strcasecmp($view, 'learn')) {
 				// All Results
@@ -105,13 +97,19 @@
 				}
 				else {
 					$request_query = " AND w.description LIKE '%".$query."%' OR w.title LIKE '%".$query."%' OR w.tags LIKE '%".$query."%' OR i.name LIKE '%".$query."%'";
-				}
-				
-				// Custom Search
+				}	
 			}
 			// Teach-View
 			else {
+				$mysqldate = date( 'Y-m-d H:i:s', time() );
+				if(!strcasecmp($query, 'future')) {
+					$conditional = '>';
+				}
+				else {
+					$conditional = '<';
+				}
 				
+				$request_query = " AND date ".$conditional." '".$mysqldate."'";
 			}
 			
 			
