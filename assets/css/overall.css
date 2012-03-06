@@ -47,6 +47,7 @@ body {
 	text-align: center;
 	color: #313133;
 	cursor: pointer;
+	border: none;
 }
 .container_bodies {
 	width: 900px;

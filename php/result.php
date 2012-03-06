@@ -60,6 +60,7 @@
 			$print.='<div class="container_content_body_group_result_user result_seperator">';
 			$print.='<img class="container_content_body_group_result_user_img" src="'.getImage($results[$i]['instructor']['fb_id']).'"/>';
 			$print.='<span class="container_content_body_group_result_user_name" fid="'.$results[$i]['instructor']['fb_id'].'" rg="'.$results[$i]['instructor']['rating_good'].'" rb="'.$results[$i]['instructor']['rating_bad'].'">'.$results[$i]['instructor']['name'].'</span>';
+			// $print.='<span class="container_content_body_group_result_user_name" fid="'.$results[$i]['instructor']['fb_id'].'" rg="'.$results[$i]['instructor']['rating_good'].'" rb="'.$results[$i]['instructor']['rating_bad'].'">'.$results[$i]['instructor']['name'].'</span>';
 			$print.='</div>';
 			$print.='<div class="container_content_body_group_result_info result_seperator">';
 			$print.='<span class="container_content_body_group_result_info_title">'.$results[$i]['title'].'</span>';

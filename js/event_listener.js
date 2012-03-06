@@ -117,13 +117,16 @@ var LISTENER = function() {
 	function _createWorkshop() {
 		log('modal:crate workshop called');
 		
+		
+		// Call server
+		
 		_hideModal();
 	}
 	
 	function _hideModal() {
 		log('modal: need to clean values');
-		_cleanModal();
-		$modal.fadeOut();
+		
+		$modal.fadeOut(function() { _cleanModal(); });
 	}
 	
 	function _cleanModal() {
@@ -146,7 +149,7 @@ var LISTENER = function() {
 				_displayModal('view', $object);
 				break;
 			case 'Create':
-				_createWorkshop();
+				//_createWorkshop($object);
 				break;	
 		}
 	}
@@ -156,6 +159,18 @@ var LISTENER = function() {
 		switch($object.attr("id")) {
 			case 'container_content_header_learn_search_form':
 				window.location = learn_view + "&q=" + $object.children("[type=text]").val();
+				break;
+			case 'modal_form':
+				console.log("modal_form called. You want to create");
+				var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
+				console.log(data_to_send);
+				//console.log(fbObj.id);
+				$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+					console.log(data);
+					// Should probably add a 'progress bar'
+					_hideModal();
+				});
+				
 				break;
 			default:
 				console.log($object);

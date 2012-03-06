@@ -2,7 +2,7 @@
 ?>
 <div class="modal_container">
 	<div class="modal">
-		<form> 
+		<form id="modal_form"> 
 			<span class="modal_overall_title modal_teach">Create A Workshop</span>
 			<span class="modal_overall_title modal_learn">More Information</span>
 			<div class="modal_layer_one">
@@ -47,7 +47,7 @@
 			</div>
 		
 			<div class="modal_bottom">
-				<div class="modal_button_bottom modal_teach button">Create</div>
+				<button type="submit" class="modal_button_bottom modal_teach button">Create</button>
 				<div class="modal_button_bottom modal_learn button">Register</div>
 			</div>
 		</form>
