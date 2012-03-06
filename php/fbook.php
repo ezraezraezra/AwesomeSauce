@@ -13,7 +13,7 @@
 	$facebook_userId = $facebook->getUser();
 	
 				// if($facebook_userId) {
-				// $userInfo = $facebook->api('/' + $facebook_userId);
+	//$facebook_userInfo = $facebook->api('/' + $facebook_userId);
 	      		// echo $userInfo['name'];
 			// }
 			// else {

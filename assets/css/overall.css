@@ -40,6 +40,29 @@ body {
 	height: 30px;
 	line-height: 30px;
 }
+#header_user_info {
+	position: relative;
+	float: right;
+	margin: 10px;
+	margin-top: 15px;
+	margin-right: 20px;
+	width: 300px;
+	height: 30px;
+	font-weight: bold;
+	font-family: Helvetica;
+	text-align: right;
+	color: #313133;
+	border: none;
+}
+#header_user_info_name {
+	display: inline-block;
+	vertical-align: 10px;
+	overflow: hidden;
+}
+#header_user_info_img {
+	width: 30px;
+	height: 30px;
+}
 .button {
 	background-color: #F2AA00;
 	font-weight: bold;
