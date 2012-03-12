@@ -6,6 +6,7 @@ var LISTENER = function() {
 	var DEBUG = true;
 	var teach_view = 'layout_tester.php?d=teach';
 	var learn_view = 'layout_tester.php?d=learn';
+	var home_view = 'layout_tester.php';
 	
 	var $button = '';
 	var $modal = '';
@@ -49,6 +50,9 @@ var LISTENER = function() {
 		else if(view == 'learn'){
 			new_view = learn_view;
 		}
+		else if(view == 'home'){
+			new_view = home_view;
+		}
 		
 		function setURL() {
 			window.location = new_view;
@@ -68,8 +72,6 @@ var LISTENER = function() {
 			$(".modal form :input[name=date]").attr('readonly', true);
 			$(".intructor_field").css("display", "none");
 			
-			
-			
 			$modal.fadeIn();
 		}
 		else if(view == 'view') {
@@ -82,6 +84,18 @@ var LISTENER = function() {
 			$(".intructor_field").css("display", "block");
 			
 			$parent = $object.parent();
+			
+			//Only display 'register' if not in 'teach view'
+			if(window.location.search.indexOf('d=teach') != -1) {
+				$(".modal_button_bottom.modal_learn.button").css("display", "none");
+			}
+			else {
+				$(".modal_button_bottom.modal_learn.button").css("display", "block");
+			}
+			
+			//Workshop id
+			log($parent.attr("wid"));
+			$(".modal_button_bottom.modal_learn.button").attr("wid", $parent.attr("wid"));
 			
 			//Title
 			$(".modal form :input[name=title]").val($parent.children(":nth-child(3)").children(":nth-child(1)").text());
@@ -123,6 +137,18 @@ var LISTENER = function() {
 		_hideModal();
 	}
 	
+	function _registerForWorkshop($object) {
+		$.get('../php/server_ajax.php', {
+			"o" : "add",
+			"fb_id" : fbObj.id,
+			"w_id" : $object.attr("wid")	
+		}, function(data) {
+			log(data);
+			// Should probably add a 'progress bar'
+			_hideModal();
+		});
+	}
+	
 	function _hideModal() {
 		log('modal: need to clean values');
 		
@@ -150,6 +176,13 @@ var LISTENER = function() {
 				break;
 			case 'Create':
 				//_createWorkshop($object);
+				break;
+			case 'Register':
+				log("Register to workshop");
+				_registerForWorkshop($object);
+				break;
+			default:
+				log($.trim($object.text()));
 				break;	
 		}
 	}
@@ -157,9 +190,11 @@ var LISTENER = function() {
 	function _formListener(e, $object) {
 		e.preventDefault();
 		switch($object.attr("id")) {
+			// Search for workshop
 			case 'container_content_header_learn_search_form':
 				window.location = learn_view + "&q=" + $object.children("[type=text]").val();
 				break;
+			// Create workshop
 			case 'modal_form':
 				console.log("modal_form called. You want to create");
 				var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
@@ -194,6 +229,8 @@ var LISTENER = function() {
 		$modal_backdrop = $('.modal_backdrop');
 		$form = $('form');
 		
+		
+		$("#container_logo").on("click", function() { _homeListener('home')});
 		$button.on("click", function() { _buttonListener($(this)); });
 		$modal_backdrop.on("click", function() { _hideModal(); });
 		//$("form").submit(function(e) { e.preventDefault(); });

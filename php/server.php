@@ -38,51 +38,6 @@
 			}
 		}
 		
-		// function checkInstructorStatus($fb_id,$name) {
-			// $counter = 0;
-			// $instructor_id = 0;
-// 				
-			// $request = "SELECT * FROM instructor WHERE fb_id='$fb_id'";
-			// $request = $this->submit_info($request, $this->connection, true);
-			// while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
-// 			
-			// //Check to see if in DB
-			// foreach ($rows as $row):
-				// $counter = $counter + 1;
-				// if($counter >= 1) {
-					// $instructor_id =  "{$row['id']}";
-				// }
-			// endforeach;
-// 			
-			// //Not in DB
-			// if($counter == 0) {
-// 				
-				// $request = "INSERT INTO instructor(name, fb_id) VALUES('$name','$fb_id')";
-				// $request = $this->submit_info($request, $this->connection, true);
-				// $instructor_id = mysql_insert_id();
-			// }
-// 			
-			// return $instructor_id;
-		// }
-// 		
-		// function addWorkshop($date, $title, $desc, $inst_fb_id, $inst_name) {
-			// // Make instructor table connection	
-			// $instructor_id = $this->checkInstructorStatus($inst_fb_id, $inst_name);
-// 			
-			// // Make workshop table connection
-			// $date_new = date( 'Y-m-d H:i:s', $date );
-			// $request = "INSERT INTO workshop(date, title, description) VALUES('$date_new', '$title', '$desc')";
-			// $request = $this->submit_info($request, $this->connection, true);
-			// $workshop_id = mysql_insert_id();
-// 			
-			// // Make workshop_X_instructor connection
-			// $request = "INSERT INTO workshop_X_instructor(instructor_id, workshop_id) VALUES('$instructor_id', '$workshop_id')";
-			// $request = $this->submit_info($request, $this->connection, true);
-// 			
-			// $arr = array('status'=>'200', 'message'=>'workshop created');
-			// return $arr;
-		// }
-		
 		function checkInstructorStatus($fb_id, $name) {
 			$request = "SELECT * FROM instructor WHERE fb_id='$fb_id' LIMIT 0,1";
 			$request = $this->submit_info($request, $this->connection, true);
@@ -102,6 +57,39 @@
 			}
 			
 			return $instructor_id;
+		}
+		
+		function checkStudentStatus($fb_id) {
+			$request = "SELECT * FROM student WHERE fb_id='".$fb_id."'";
+			$request = $this->submit_info($request, $this->connection, true);
+			$student_id = '0';
+			
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			
+			//Check to see if in DB
+			foreach ($rows as $row):
+				$student_id =  "{$row['id']}";
+			endforeach;
+			
+			if(!strcasecmp($student_id, '0')) {
+				$request = "INSERT INTO student(fb_id) VALUES('$fb_id')";
+				$request = $this->submit_info($request, $this->connection, true);
+				$student_id = mysql_insert_id();
+			}
+				
+			return $student_id;
+		}
+		
+		function registerStudent($fb_id, $workshop_id) {
+			// Get student's DB ID
+			$student_id = $this->checkStudentStatus($fb_id);
+			
+			//Add student to workshop
+			$request = "INSERT INTO workshop_X_student(workshop_id, student_id) VALUES('$workshop_id','$student_id')";
+			$request = $this->submit_info($request, $this->connection, true);
+			
+			$arr = array('status'=>'200', 'message'=>'student added successfully');
+			return $arr;
 		}
 		
 		function addWorkshop($title, $tech, $description, $date, $fb_id, $name) {
@@ -139,7 +127,10 @@
 				}
 				else {
 					$request_query = " AND w.description LIKE '%".$query."%' OR w.title LIKE '%".$query."%' OR w.tags LIKE '%".$query."%' OR i.name LIKE '%".$query."%'";
-				}	
+				}
+				
+				$mysqldate = date( 'Y-m-d H:i:s', time() );
+				$request_query = $request_query." AND w.date > '".$mysqldate."'";	
 			}
 			// Teach-View
 			else {

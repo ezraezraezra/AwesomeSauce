@@ -7,7 +7,10 @@
 	
 	switch($_GET['o']) {
 		case 'add':
-			$response;
+			$fb_id = $_GET['fb_id'];
+			$workshop_id = $_GET['w_id'];
+			
+			$response =$server->registerStudent($fb_id, $workshop_id);
 			break;
 		case 'register':
 			
