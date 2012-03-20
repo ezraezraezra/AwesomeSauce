@@ -1,12 +1,21 @@
 <?php
 ?>
+<script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../js/tb.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		OpenTok.init();
+		//OpenTok.setData();
+	});
+	
+</script>
 
 <div id="container_content" class="container_bodies">
 <div class="classroom_container">
 			<div class="classroom_left_container classroom_inner_container">
 				<div class="instructor_container">
 					<span class="instructor_name classroom_labels">Sir George Martin</span>
-					<div class="video_feed_instructor"></div>
+					<div class="video_feed_instructor" id="video_feed_instructor"></div>
 					<div class="instructor_button_container">
 						<div class="instructor_rate_button instructor_good_img button">75%</div>
 						<div class="instructor_rate_button instructor_bad_img button">25%</div>

@@ -1,6 +1,7 @@
 <?php
     header('Content-type: application/json; charset=utf-8');
 	require('server.php');
+	require('opentok.php');
 	
 	$server = new Server();
 	$server->startApp();
@@ -25,6 +26,16 @@
 			//$response = array('test'=>$date);
 			
 			$response =$server->addWorkshop($title, $tech, $description, $date, $fb_id, $name);
+			break;
+		case 'classroom':
+			require('fbook.php');
+			// Get fb id from db
+			$facebook_array = $facebook->api('/1088730508', 'GET');
+			$facebook_name = $facebook_array['name'];
+			
+			$opentok = new OpenTok();
+			$response = $opentok->generate($facebook_name);
+        	
 			break;
 		default:
 			$response = array('status'=>'400','message'=>'command not known');
