@@ -38,8 +38,7 @@
 			}
 		}
 		
-		function getClassroom($u_id,$u_type,$w_id) {
-			// Get FB_ID	
+		function getFBid($u_id) {
 			if(strcasecmp($u_type, 'user') == 0) {
 				$table = 'instructor';
 			}
@@ -53,6 +52,13 @@
 			foreach ($rows as $row):
 				$fb_id =  "{$row['fb_id']}";
 			endforeach;
+			
+			return $fb_id;
+		}
+		
+		function getClassroom($u_id,$u_type,$w_id) {
+			// Get FB_ID	
+			$fb_id = $this->getFBid($u_id);
 			
 			// Get Workshop Name
 			$request = "SELECT title FROM workshop WHERE id='$w_id'";
