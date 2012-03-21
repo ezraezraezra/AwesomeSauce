@@ -38,6 +38,34 @@
 			}
 		}
 		
+		function getClassroom($u_id,$u_type,$w_id) {
+			// Get FB_ID	
+			if(strcasecmp($u_type, 'user') == 0) {
+				$table = 'instructor';
+			}
+			else {
+				$table = 'student';
+			}
+			
+			$request = "SELECT fb_id FROM $table WHERE id='$u_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			foreach ($rows as $row):
+				$fb_id =  "{$row['fb_id']}";
+			endforeach;
+			
+			// Get Workshop Name
+			$request = "SELECT title FROM workshop WHERE id='$w_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			foreach ($rows as $row):
+				$w_name =  "{$row['title']}";
+			endforeach;
+			
+			$arr = array('status'=>'200', 'w_name'=>$w_name, 'fb_id'=>$fb_id);
+			return $arr;
+		}
+		
 		function checkInstructorStatus($fb_id, $name) {
 			$request = "SELECT * FROM instructor WHERE fb_id='$fb_id' LIMIT 0,1";
 			$request = $this->submit_info($request, $this->connection, true);

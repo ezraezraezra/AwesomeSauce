@@ -8,7 +8,7 @@
 			
 		}
 		
-		function generate($name) {
+		function generate($name, $u_type, $w_name) {
 			$apiObj = new OpenTokSDK(API_Config::API_KEY, API_Config::API_SECRET);
 
 			// Pull this from the server when wanting the workshop
@@ -16,7 +16,7 @@
 			
 			$role = RoleConstants::PUBLISHER; // Or set to the correct role for the user.
 			// Get username from the FB server?
-			$metadata =  '{"name": "'.$name.'"}';
+			$metadata =  '{"name": "'.$name.'", "u_type": "'.$u_type.'", "w_name": "'.$w_name.'"}';
 			$token_user = $apiObj->generate_token($session->getSessionId(), $role, NULL, $metadata); // Replace with the correct session ID
 			$session_id = $session->getSessionId();
 					

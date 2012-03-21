@@ -28,13 +28,20 @@
 			$response =$server->addWorkshop($title, $tech, $description, $date, $fb_id, $name);
 			break;
 		case 'classroom':
+			$u_id = $_GET['uid'];
+			$u_type = $_GET['type'];
+			$w_id = $_GET['wid'];
+			
+			$server_response = $server->getClassroom($u_id,$u_type,$w_id);
+			// returns fb_id, workshop name 
+			
 			require('fbook.php');
 			// Get fb id from db
-			$facebook_array = $facebook->api('/1088730508', 'GET');
+			$facebook_array = $facebook->api('/'.$server_response["fb_id"], 'GET');
 			$facebook_name = $facebook_array['name'];
 			
 			$opentok = new OpenTok();
-			$response = $opentok->generate($facebook_name);
+			$response = $opentok->generate($facebook_name,$u_type, $server_response['w_name']);
         	
 			break;
 		default:

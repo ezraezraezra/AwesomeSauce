@@ -13,6 +13,8 @@ var OpenTok = function() {
 	var publisher;
 	var subscribers = {};
 	
+	var values = new Array();
+	
 	//--------------------------------------
 	//  LINK CLICK HANDLERS
 	//--------------------------------------
@@ -28,11 +30,20 @@ var OpenTok = function() {
 	// Called when user wants to start publishing to the session
 	function startPublishing() {
 		if (!publisher) {
-			var parentDiv = document.getElementById("video_feed_instructor");
+			if(values['type'] == 'admin') {
+				var video_feed = "video_feed_instructor";
+				var subscriberProps = {width: 300, 
+                                            height: 250, 
+                                            subscribeToAudio: true};
+			}
+			else {
+				// a student, figure out what to do
+			}
+			var parentDiv = document.getElementById(video_feed);
 			var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
 			publisherDiv.setAttribute('id', 'opentok_publisher');
 			parentDiv.appendChild(publisherDiv);
-			publisher = session.publish(publisherDiv.id); // Pass the replacement div id to the publish method
+			publisher = session.publish(publisherDiv.id, subscriberProps); // Pass the replacement div id to the publish method
 		}
 	}
 
@@ -100,7 +111,13 @@ var OpenTok = function() {
 		//console.log(stream);
 		connection_data = getConnectionData(stream['connection']);
 		console.log(connection_data);
-		$(".instructor_name.classroom_labels").html(connection_data['name']);
+		if(connection_data['u_type'] == 'admin') {
+			var div_name = ".instructor_name.classroom_labels";
+		}
+		else {
+			// figure out what to do with students
+		}
+		$(div_name).html(connection_data['name']);
 		
 		// Check if this is the stream that I am publishing, and if so do not publish.
 		if (stream.connection.connectionId == session.connection.connectionId) {
@@ -131,8 +148,20 @@ var OpenTok = function() {
 	
 	return {
 		init : function() {
+			search = window.location.search.substring(1).split("&");
+			//values = new Array();
+			for(var i = 0; i < search.length; i++) {
+				pairs = search[i].split("=");
+				values[pairs[0]] = pairs[1];
+				console.log(values[pairs[0]]+ "<="+ pairs[0]);
+			}
+
+			
 			$.get('../php/server_ajax.php', {
-				"o" : "classroom"	
+				"o" : "classroom",
+				"uid" : values['uid'],
+				"type" : values['type'],
+				"wid" : values['wid'],	
 			}, function(data) {
 				console.log(data);
 				sessionId = data.session[0];
