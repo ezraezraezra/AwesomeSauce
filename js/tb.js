@@ -29,16 +29,39 @@ var OpenTok = function() {
 
 	// Called when user wants to start publishing to the session
 	function startPublishing() {
+		var video_feed;
+		var subscriberProprs;
 		if (!publisher) {
 			if(values['type'] == 'admin') {
-				var video_feed = "video_feed_instructor";
-				var subscriberProps = {width: 300, 
+				video_feed = "video_feed_instructor";
+				subscriberProps = {width: 300, 
                                             height: 250, 
                                             subscribeToAudio: true};
 			}
 			else {
+				console.log("other");
 				// a student, figure out what to do
+				$(".student_container").each(function(i) {
+					console.log(i);
+					if($(this).children(":first").html() == 'Paul McCartney') {
+						console.log("inside");
+						//$(this).children(":first").html(connection_data['name']);
+						//console.log("yes");
+						$(this).children(":last").attr("id", "user_"+i);
+						$(this).css("zIndex", "100");
+						video_feed = "user_"+i;
+						//video_feed = "video_feed_instructor";
+						subscriberProps = {width: 150, 
+		                                            height: 100, 
+		                                            subscribeToAudio: true};
+					}
+					else {
+						console.log($(this).children(":first").html());
+					}
+				});
 			}
+			console.log(video_feed);
+			
 			var parentDiv = document.getElementById(video_feed);
 			var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
 			publisherDiv.setAttribute('id', 'opentok_publisher');
@@ -112,17 +135,32 @@ var OpenTok = function() {
 		connection_data = getConnectionData(stream['connection']);
 		console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
-			var div_name = ".instructor_name.classroom_labels";
+			$(".instructor_name.classroom_labels").html(connection_data['name']);
 		}
 		else {
 			// figure out what to do with students
+			// Populate one of many subscribers
+			$(".student_container").each(function() {
+				
+				if($(this).children(":first").html() == 'Paul McCartney') {
+					$(this).children(":first").html(connection_data['name']);
+					//console.log("yes");
+				}
+				else {
+					console.log("no");
+				}
+				//console.log($(this));
+			});
 		}
-		$(div_name).html(connection_data['name']);
+		
 		
 		// Check if this is the stream that I am publishing, and if so do not publish.
 		if (stream.connection.connectionId == session.connection.connectionId) {
 			return;
 		}
+		
+		
+		
 		var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
 		subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
 		document.getElementById("subscribers").appendChild(subscriberDiv);
