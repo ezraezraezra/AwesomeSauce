@@ -61,14 +61,15 @@
 			$fb_id = $this->getFBid($u_id);
 			
 			// Get Workshop Name
-			$request = "SELECT title FROM workshop WHERE id='$w_id'";
+			$request = "SELECT title, ot_session_id FROM workshop WHERE id='$w_id'";
 			$request = $this->submit_info($request, $this->connection, true);
 			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
 			foreach ($rows as $row):
 				$w_name =  "{$row['title']}";
+				$s_id = "{$row['ot_session_id']}";
 			endforeach;
 			
-			$arr = array('status'=>'200', 'w_name'=>$w_name, 'fb_id'=>$fb_id);
+			$arr = array('status'=>'200', 'w_name'=>$w_name, 'fb_id'=>$fb_id, 's_id'=>$s_id);
 			return $arr;
 		}
 		
@@ -126,14 +127,14 @@
 			return $arr;
 		}
 		
-		function addWorkshop($title, $tech, $description, $date, $fb_id, $name) {
+		function addWorkshop($title, $tech, $description, $date, $fb_id, $name, $ot_session_id) {
 			// Get instructor's DB ID
 			$instructor_id = $this->checkInstructorStatus($fb_id, $name);
 			
 			//Create workshop
 			//$date_new = date( 'Y-m-d H:i:s', $date );
 			$date_new = date( 'Y-m-d H:i:s', strtotime($date));
-			$request = "INSERT INTO workshop(title, description, tags, date) VALUES('$title', '$description', '$tech', '$date_new')";
+			$request = "INSERT INTO workshop(title, description, tags, date, ot_session_id) VALUES('$title', '$description', '$tech', '$date_new', '$ot_session_id')";
 			$request = $this->submit_info($request, $this->connection, true);
 			$workshop_id = mysql_insert_id();
 			

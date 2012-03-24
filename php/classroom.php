@@ -22,6 +22,7 @@
 					</div>
 				</div>
 				<div class="students_container">
+					<!--
 					<div class="student_container">
 						<span class="student_name classroom_labels">Paul McCartney</span>
 						<div class="video_feed_student"></div>
@@ -38,6 +39,7 @@
 						<span class="student_name classroom_labels">George Harrison</span>
 						<div class="video_feed_student"></div>
 					</div>
+					-->
 					<div class="container_clear"></div>
 				</div>
 			</div>

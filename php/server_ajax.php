@@ -25,7 +25,11 @@
 			
 			//$response = array('test'=>$date);
 			
-			$response =$server->addWorkshop($title, $tech, $description, $date, $fb_id, $name);
+			//Create sessionId for workshop
+			$opentok = new OpenTok();
+			$sessionId = $opentok->generateSession();
+			
+			$response =$server->addWorkshop($title, $tech, $description, $date, $fb_id, $name, $sessionId);
 			break;
 		case 'classroom':
 			$u_id = $_GET['uid'];
@@ -41,7 +45,7 @@
 			$facebook_name = $facebook_array['name'];
 			
 			$opentok = new OpenTok();
-			$response = $opentok->generate($facebook_name,$u_type, $server_response['w_name']);
+			$response = $opentok->generate($facebook_name,$u_type, $server_response['w_name'], $server_response['s_id']);
         	
 			break;
 		default:

@@ -14,12 +14,15 @@ var OpenTok = function() {
 	var subscribers = {};
 	
 	var values = new Array();
+	var video_feed;
+	var student_counter = 0;
 	
 	//--------------------------------------
 	//  LINK CLICK HANDLERS
 	//--------------------------------------
 	function connect() {
 		console.log(token);
+		console.log(sessionId);
 		session.connect(apiKey, token);
 	}
 
@@ -29,7 +32,7 @@ var OpenTok = function() {
 
 	// Called when user wants to start publishing to the session
 	function startPublishing() {
-		var video_feed;
+		
 		var subscriberProprs;
 		if (!publisher) {
 			if(values['type'] == 'admin') {
@@ -41,6 +44,8 @@ var OpenTok = function() {
 			else {
 				console.log("other");
 				// a student, figure out what to do
+				
+				/*
 				$(".student_container").each(function(i) {
 					console.log(i);
 					if($(this).children(":first").html() == 'Paul McCartney') {
@@ -59,6 +64,25 @@ var OpenTok = function() {
 						console.log($(this).children(":first").html());
 					}
 				});
+				*/
+				// var counter = 0;
+				// $(".student_container").each(function(i) {
+					// console.log("inside when trying to create publisher");
+					// counter = i;
+				// });
+				
+				var module = '<div class="student_container">'+
+							 	'<span class="student_name classroom_labels"></span>'+
+								'<div class="video_feed_student" id="user_'+student_counter+'"></div>'+
+							'</div>';
+				$(".students_container").append(module);
+				video_feed = "user_"+student_counter;
+				$("#"+video_feed).parent().css("zIndex", 100);
+				//$obj = $(".students_container").children(":last").children(":last");
+				
+				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
+				student_counter +=1;
+				
 			}
 			console.log(video_feed);
 			
@@ -129,42 +153,88 @@ var OpenTok = function() {
 	//--------------------------------------
 
 	function addStream(stream) {
-		
+		var label_set = false;
 		// For testing purposes, it all goes to instructor currently!
 		//console.log(stream);
 		connection_data = getConnectionData(stream['connection']);
 		console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
 			$(".instructor_name.classroom_labels").html(connection_data['name']);
+			// create the video thing here
+			//$obj = $("video_feed_instructor");
+			video_feed = "video_feed_instructor";
+			label_set = true;
+			subscriberProps = {width: 300, height: 250, subscribeToAudio: true};
 		}
 		else {
 			// figure out what to do with students
 			// Populate one of many subscribers
-			$(".student_container").each(function() {
-				
-				if($(this).children(":first").html() == 'Paul McCartney') {
-					$(this).children(":first").html(connection_data['name']);
-					//console.log("yes");
-				}
-				else {
-					console.log("no");
-				}
-				//console.log($(this));
-			});
+			
+			//
+			// Old method of putting them on
+			//
+			// $(".student_container").each(function() {
+// 				
+				// if($(this).children(":first").html() == '') {
+					// $(this).children(":first").html(connection_data['name']);
+					// //console.log("yes");
+					// // create the video thing here
+					// $obj = $("");
+				// }
+				// else {
+					// console.log("no");
+				// }
+				// //console.log($(this));
+			// });
+			
+			
 		}
 		
 		
 		// Check if this is the stream that I am publishing, and if so do not publish.
 		if (stream.connection.connectionId == session.connection.connectionId) {
+			if(label_set == false) {
+				console.log("HIERE");
+				console.log(video_feed);
+				$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
+			}
 			return;
 		}
 		
 		
+		//
+			// New Method
+			//
+			// var module = '<div class="student_container">'+
+						 	// '<span class="student_name classroom_labels">'+ connection_data['name'] +'</span>'+
+							// '<div class="video_feed_student"></div>'+
+						// '</div>';
+			// $(".students_container").html(module);
+			// $obj = $(".students_container").children(":last").children(":last");
+		if(label_set == false) {	
+			var counter = 0;
+				$(".student_container").each(function(i) {
+					counter = i;
+				});
+				
+				var module = '<div class="student_container">'+
+							 	'<span class="student_name classroom_labels">'+ connection_data['name'] +'</span>'+
+								'<div class="video_feed_student" id="user_'+student_counter+'"></div>'+
+							'</div>';
+				$(".students_container").append(module);
+				video_feed = "user_"+student_counter;
+		
+				student_counter +=1;
+				
+				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
+		}
+		
 		
 		var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
 		subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
-		document.getElementById("subscribers").appendChild(subscriberDiv);
-		subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id);
+		document.getElementById(video_feed).appendChild(subscriberDiv);
+		//$obj.append(subscriberDiv);
+		subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
 	}
 
 	function show(id) {
@@ -202,7 +272,8 @@ var OpenTok = function() {
 				"wid" : values['wid'],	
 			}, function(data) {
 				console.log(data);
-				sessionId = data.session[0];
+				//sessionId = data.session[0];
+				sessionId = data.session;
 				token = data.token;
 			
 				if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
