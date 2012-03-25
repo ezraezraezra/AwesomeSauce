@@ -50,7 +50,13 @@
  				</div>
  				<div class="textchat_container">
  					<span class="classroom_labels">Informal Class Chat</span>
- 					<div class="textchat_module"></div>
+ 					<div class="textchat_module">
+ 						<textarea class="textchat_output" readonly="readonly"></textarea>
+						<form id="chat_form">
+							<input type="text" class="textchat_input" placeholder="type message here" name="textchat_input">
+							<input type="submit" id="chat_submit" value="">
+						</form>
+ 					</div>
  				</div>
  			</div>
  			<div class="container_clear"></div>
