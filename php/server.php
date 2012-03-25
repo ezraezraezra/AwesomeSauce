@@ -123,7 +123,8 @@
 			$request = "INSERT INTO workshop_X_student(workshop_id, student_id) VALUES('$workshop_id','$student_id')";
 			$request = $this->submit_info($request, $this->connection, true);
 			
-			$arr = array('status'=>'200', 'message'=>'student added successfully');
+			$generate_url = $this->generateURL($student_id, 'user', $workshop_id);
+			$arr = array('status'=>'200', 'message'=>'student added successfully', 'url_values'=>$generate_url);
 			return $arr;
 		}
 		
@@ -142,10 +143,17 @@
 			$request = "INSERT INTO workshop_X_instructor(instructor_id, workshop_id) VALUES('$instructor_id', '$workshop_id')";
 			$request = $this->submit_info($request, $this->connection, true);
 			
-			$arr = array('status'=>'200', 'message'=>'workshop created');
+			$generate_url = $this->generateURL($instructor_id, 'admin', $workshop_id);
+			$arr = array('status'=>'200', 'message'=>'workshop created', 'url_values'=>$generate_url);
 			return $arr;
 			
 			
+		}
+		
+		function generateURL($u_id, $type, $w_id) {
+			$arr = array('u_id'=>$u_id,'type'=>$type,'w_id'=>$w_id);
+			
+			return $arr;
 		}
 		
 		

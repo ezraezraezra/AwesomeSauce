@@ -203,6 +203,14 @@ var LISTENER = function() {
 				$.get('../php/server_ajax.php?'+data_to_send, function(data) {
 					console.log(data);
 					// Should probably add a 'progress bar'
+					
+					var url = window.location.origin + "" + window.location.pathname + "?d=classroom&uid="+data.url_values.u_id+"&type="+data.url_values.type+"&wid="+data.url_values.w_id;
+					console.log(url);
+					
+					// Display modal window that contains url
+					// When user clicks outside of it, remove it
+					// and bring it back to normal
+					
 					_hideModal();
 				});
 				
