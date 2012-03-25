@@ -145,7 +145,9 @@ var LISTENER = function() {
 		}, function(data) {
 			log(data);
 			// Should probably add a 'progress bar'
-			_hideModal();
+			
+			_fillModalUrl(data);
+			//_hideModal();
 		});
 	}
 	
@@ -157,6 +159,9 @@ var LISTENER = function() {
 	
 	function _cleanModal() {
 		$(".modal form :input").val("");
+		
+		$(".workshop_url").css("display", "none");
+		$("#modal_form").css("display", "block");
 	}
 	
 	function _buttonListener($object) {
@@ -204,14 +209,9 @@ var LISTENER = function() {
 					console.log(data);
 					// Should probably add a 'progress bar'
 					
-					var url = window.location.origin + "" + window.location.pathname + "?d=classroom&uid="+data.url_values.u_id+"&type="+data.url_values.type+"&wid="+data.url_values.w_id;
-					console.log(url);
 					
-					// Display modal window that contains url
-					// When user clicks outside of it, remove it
-					// and bring it back to normal
+					_fillModalUrl(data);
 					
-					_hideModal();
 				});
 				
 				break;
@@ -220,6 +220,26 @@ var LISTENER = function() {
 				break;
 		}
 		
+	}
+	
+	function _fillModalUrl(data) {
+		var url = window.location.origin + "" + window.location.pathname + "?d=classroom&uid="+data.url_values.u_id+"&type="+data.url_values.type+"&wid="+data.url_values.w_id;
+		console.log(url);
+		var url_date = $("input[name=date]").val();
+		
+		$(".modal_url_url").val(url);
+		$(".modal_url_date").html(url_date);
+		
+		// Display modal window that contains url
+		// When user clicks outside of it, remove it
+		// and bring it back to normal
+		
+		
+		
+		$("#modal_form").css("display", "none");
+		$(".workshop_url").css("display", "block");
+		
+		//_hideModal();
 	}
 	
 	function _dateTimeListener($object, initial) {
@@ -246,6 +266,8 @@ var LISTENER = function() {
 		
 		$(".modal form :input[name=date]").click(function() { _dateTimeListener($(this), true); });
 		$(".modal form :input[name=date]").datetimepicker({ ampm: true, stepMinute: 15, timeFormat: 'h:mm TT' });
+		
+		$(".modal_url_url").on("click", function() { $(this).select(); });
 	}
 	
 	$(document).ready(function() {
