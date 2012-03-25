@@ -1,5 +1,6 @@
 /**
  * @author Ezra Velazquez
+ * Original basic functionality code by: TokBox
  */
 
 console.log("hello world");
@@ -44,44 +45,9 @@ var OpenTok = function() {
 			else {
 				console.log("other");
 				// a student, figure out what to do
-				
-				/*
-				$(".student_container").each(function(i) {
-					console.log(i);
-					if($(this).children(":first").html() == 'Paul McCartney') {
-						console.log("inside");
-						//$(this).children(":first").html(connection_data['name']);
-						//console.log("yes");
-						$(this).children(":last").attr("id", "user_"+i);
-						$(this).css("zIndex", "100");
-						video_feed = "user_"+i;
-						//video_feed = "video_feed_instructor";
-						subscriberProps = {width: 150, 
-		                                            height: 100, 
-		                                            subscribeToAudio: true};
-					}
-					else {
-						console.log($(this).children(":first").html());
-					}
-				});
-				*/
-				// var counter = 0;
-				// $(".student_container").each(function(i) {
-					// console.log("inside when trying to create publisher");
-					// counter = i;
-				// });
-				
-				var module = '<div class="student_container">'+
-							 	'<span class="student_name classroom_labels"></span>'+
-								'<div class="video_feed_student" id="user_'+student_counter+'"></div>'+
-							'</div>';
-				$(".students_container").append(module);
-				video_feed = "user_"+student_counter;
+				insertStudent('', 'me');				
 				$("#"+video_feed).parent().css("zIndex", 100);
-				//$obj = $(".students_container").children(":last").children(":last");
-				
 				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
-				student_counter +=1;
 				
 			}
 			console.log(video_feed);
@@ -159,7 +125,7 @@ var OpenTok = function() {
 		connection_data = getConnectionData(stream['connection']);
 		console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
-			$(".instructor_name.classroom_labels").html(connection_data['name']);
+			$(".instructor_name.classroom_labels").html(connection_data['name'] + " - Instructor");
 			// create the video thing here
 			//$obj = $("video_feed_instructor");
 			video_feed = "video_feed_instructor";
@@ -167,26 +133,7 @@ var OpenTok = function() {
 			subscriberProps = {width: 300, height: 250, subscribeToAudio: true};
 		}
 		else {
-			// figure out what to do with students
-			// Populate one of many subscribers
-			
-			//
-			// Old method of putting them on
-			//
-			// $(".student_container").each(function() {
-// 				
-				// if($(this).children(":first").html() == '') {
-					// $(this).children(":first").html(connection_data['name']);
-					// //console.log("yes");
-					// // create the video thing here
-					// $obj = $("");
-				// }
-				// else {
-					// console.log("no");
-				// }
-				// //console.log($(this));
-			// });
-			
+			console.log("need to put a label on someone, this one: "+connection_data['name']);
 			
 		}
 		
@@ -196,44 +143,24 @@ var OpenTok = function() {
 			if(label_set == false) {
 				console.log("HIERE");
 				console.log(video_feed);
-				$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
+				//$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
+				$("#user_me").parent().children(":first").html(connection_data['name']);
 			}
 			return;
 		}
 		
-		
-		//
-			// New Method
-			//
-			// var module = '<div class="student_container">'+
-						 	// '<span class="student_name classroom_labels">'+ connection_data['name'] +'</span>'+
-							// '<div class="video_feed_student"></div>'+
-						// '</div>';
-			// $(".students_container").html(module);
-			// $obj = $(".students_container").children(":last").children(":last");
 		if(label_set == false) {	
-			var counter = 0;
-				$(".student_container").each(function(i) {
-					counter = i;
-				});
-				
-				var module = '<div class="student_container">'+
-							 	'<span class="student_name classroom_labels">'+ connection_data['name'] +'</span>'+
-								'<div class="video_feed_student" id="user_'+student_counter+'"></div>'+
-							'</div>';
-				$(".students_container").append(module);
-				video_feed = "user_"+student_counter;
-		
-				student_counter +=1;
-				
-				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
+			console.log("sending this name to be created: "+connection_data['name']);
+			console.log("this is the student_counter: "+student_counter);
+			insertStudent(connection_data['name'], student_counter);
+			
+			subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
 		}
 		
 		
 		var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
 		subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
 		document.getElementById(video_feed).appendChild(subscriberDiv);
-		//$obj.append(subscriberDiv);
 		subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
 	}
 
@@ -252,6 +179,20 @@ var OpenTok = function() {
 	        connectionData = eval("(" + connection.data + ")" );
 	    }
 	    return connectionData;
+	}
+	
+	function insertStudent(name, id_tag) {
+		video_feed = "user_"+id_tag;
+		var module = '<div class="student_container">'+
+					 	'<span class="student_name classroom_labels">'+ name +'</span>'+
+						'<div class="video_feed_student" id="'+video_feed+'"></div>'+
+					'</div>';
+		$(".students_container").append(module);
+		
+		if(id_tag != 'me') {
+			student_counter +=1;
+		}
+		
 	}
 	
 	return {

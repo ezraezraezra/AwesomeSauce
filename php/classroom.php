@@ -14,7 +14,7 @@
 <div class="classroom_container">
 			<div class="classroom_left_container classroom_inner_container">
 				<div class="instructor_container">
-					<span class="instructor_name classroom_labels">Sir George Martin</span>
+					<span class="instructor_name classroom_labels">Instructor</span>
 					<div class="video_feed_instructor" id="video_feed_instructor"></div>
 					<div class="instructor_button_container">
 						<div class="instructor_rate_button instructor_good_img button">75%</div>
