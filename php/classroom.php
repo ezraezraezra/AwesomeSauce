@@ -2,9 +2,27 @@
 ?>
 <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="../js/tb.js"></script>
+<script type="text/javascript" src="../js/lib/io/dist/socket.io.js"></script>
+<script type="text/javascript">
+	var Chat = function() {
+		var chat_enable = false;
+		
+		return {
+			init : function() {
+				console.log("chat should load here");
+				chat_enable = true;
+				
+			},
+			enabled : function() {
+				return chat_enable;
+			}
+		}
+	}();
+</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		OpenTok.init();
+		Chat.init();
 		//OpenTok.setData();
 	});
 	

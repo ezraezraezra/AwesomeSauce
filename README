@@ -6,7 +6,8 @@
  * Title:       AwesomeSauce      URL coming soon
  * Description: Coming soon
  *
- * Tech:        Facebook API, JavaScript, jQuery, MySQL, OpenTok API, PHP
+ * Tech:        Facebook API, JavaScript, jQuery, MySQL, Node.js,
+ *              OpenTok API, PHP, Socket.io
  * Last Update: March 25th, 2012
  ***********************************************************************/
  
@@ -15,4 +16,5 @@
  Libraries Omitted:  jQuery        http://www.jquery.com
                      FBook PHP SDK https://github.com/facebook/facebook-php-sdk
                      OpenTok       http://www.tokbox.com
+                     Socket.io     http://socket.io
                      Timepicker    http://trentrichardson.com/examples/timepicker/

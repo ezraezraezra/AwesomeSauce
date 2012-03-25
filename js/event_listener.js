@@ -224,6 +224,9 @@ var LISTENER = function() {
 				console.log("you typed: "+user_text);
 				$object.children(":first").val("");
 				
+				//NODE JS STUFF HERE
+				console.log(Chat.enabled());
+				
 				break;
 			default:
 				console.log($object);
