@@ -140,6 +140,7 @@ var OpenTok = function() {
 		
 		// Check if this is the stream that I am publishing, and if so do not publish.
 		if (stream.connection.connectionId == session.connection.connectionId) {
+			Chat.setName(connection_data['name']);
 			if(label_set == false) {
 				console.log("HIERE");
 				console.log(video_feed);

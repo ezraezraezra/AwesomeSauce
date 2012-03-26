@@ -226,6 +226,8 @@ var LISTENER = function() {
 				
 				//NODE JS STUFF HERE
 				console.log(Chat.enabled());
+				Chat.sendMessage(user_text);
+				
 				
 				break;
 			default:
