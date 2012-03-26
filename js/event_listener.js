@@ -217,15 +217,15 @@ var LISTENER = function() {
 				break;
 			// Chat interface
 			case 'chat_form':
-				console.log($object);
-				console.log("this is the chat module");
+				//console.log($object);
+				//console.log("this is the chat module");
 				
 				var user_text = $object.children(":first").val();
-				console.log("you typed: "+user_text);
+				//console.log("you typed: "+user_text);
 				$object.children(":first").val("");
 				
 				//NODE JS STUFF HERE
-				console.log(Chat.enabled());
+				//console.log(Chat.enabled());
 				Chat.sendMessage(user_text);
 				
 				
