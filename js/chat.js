@@ -6,6 +6,7 @@ var Chat = function() {
 	var chat_enable = false;
 	var socket;
 	var my_name = 'Guest';
+	var wid = 0;
 	
 	function _connectToServer() {
 		socket = io.connect('http://localhost:8010');
@@ -13,7 +14,7 @@ var Chat = function() {
 			//console.log(data);
 		});
 		
-		socket.on('message_all', function(data) {
+		socket.on('message_'+wid, function(data) {
 			//console.log("function: message_all");
 			//console.log(data);
 			var text_to_display = data.message.name + " @ " + data.message.time_sent + " " + data.message.text;
@@ -34,15 +35,29 @@ var Chat = function() {
 			//console.log(my_name);
 		
 		socket.emit('message', 
-					{	text : message,
+					{	wid  : 'message_'+wid,
+						text : message,
 						name : my_name,
 						time_sent : current_hour + ":"+current_minute
 					}
 		);
 	}
 	
+	function _setUniqueChatKey() {
+		var values = new Array();
+		var search = window.location.search.substring(1).split("&");
+		//values = new Array();
+		for(var i = 0; i < search.length; i++) {
+			pairs = search[i].split("=");
+			values[pairs[0]] = pairs[1];
+			//console.log(values[pairs[0]]+ "<="+ pairs[0]);
+		}
+		return values['wid'];
+	}
+	
 	return {
 		init : function() {
+			wid = _setUniqueChatKey();
 			//console.log("chat should load here");
 			chat_enable = true;
 			_connectToServer();

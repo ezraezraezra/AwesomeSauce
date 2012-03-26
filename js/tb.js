@@ -196,17 +196,20 @@ var OpenTok = function() {
 		
 	}
 	
+	function _setUniqueVideoKeys() {
+		search = window.location.search.substring(1).split("&");
+		//values = new Array();
+		for(var i = 0; i < search.length; i++) {
+			pairs = search[i].split("=");
+			values[pairs[0]] = pairs[1];
+			console.log(values[pairs[0]]+ "<="+ pairs[0]);
+		}
+	}
+	
 	return {
 		init : function() {
-			search = window.location.search.substring(1).split("&");
-			//values = new Array();
-			for(var i = 0; i < search.length; i++) {
-				pairs = search[i].split("=");
-				values[pairs[0]] = pairs[1];
-				console.log(values[pairs[0]]+ "<="+ pairs[0]);
-			}
+			_setUniqueVideoKeys();
 
-			
 			$.get('../php/server_ajax.php', {
 				"o" : "classroom",
 				"uid" : values['uid'],
