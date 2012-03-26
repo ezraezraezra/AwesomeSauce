@@ -4,11 +4,14 @@
 <script type="text/javascript" src="../js/tb.js"></script>
 <script type="text/javascript" src="../js/lib/io/dist/socket.io.js"></script>
 <script type="text/javascript" src="../js/chat.js"></script>
+<script type="text/javascript" src="../js/lib/etherpad.js"></script>
+<script type="text/javascript" src="../js/text_editor.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		OpenTok.init();
 		Chat.init();
+		TextEditor.init();
 	});
 	
 </script>
@@ -31,7 +34,7 @@
  			<div class="classroom_right_container classroom_inner_container">
  				<div class="blackboard_container">
  					<span class="classroom_labels">Whiteboard</span>
- 					<div class="blackboard_module"></div>
+ 					<div class="blackboard_module" id="blackboard_module"></div>
  				</div>
  				<div class="textchat_container">
  					<span class="classroom_labels">Informal Class Chat</span>

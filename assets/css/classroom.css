@@ -85,9 +85,10 @@
 			
 			.blackboard_container {
 				background-color: #E0E0E0;
-				width: 420px;
+				width: /*420px*/ 460px;
 				height: 333px;
-				padding: 20px 40px 30px 40px;
+				/*padding: 20px 40px 30px 40px;*/
+				padding: 20px 20px 30px 20px;
 			}
 			.textchat_container {
 				background-color: #E0E0E0;
@@ -97,7 +98,7 @@
 				padding: 20px 40px 30px 40px;
 			}
 			.blackboard_module {
-				width: 420px;
+				width: /*420*/460px;
 				height: 310px;
 				margin-top: 5px;
 				background-color: white;

@@ -11,12 +11,10 @@ var Chat = function() {
 	function _connectToServer() {
 		socket = io.connect('http://localhost:8010');
 		socket.on('start', function(data) {
-			//console.log(data);
+			// Connected
 		});
 		
 		socket.on('message_'+wid, function(data) {
-			//console.log("function: message_all");
-			//console.log(data);
 			var text_to_display = data.message.name + " @ " + data.message.time_sent + " " + data.message.text;
 			$(".textchat_output").append(text_to_display + "\n");
 			$(".textchat_output").scrollTop($(".textchat_output").height());
@@ -30,9 +28,6 @@ var Chat = function() {
 		if(current_minute < 10) {
 			current_minute = "0" + current_minute;
 		}
-			//console.log(current_time.getHours());
-			//console.log(current_time.getMinutes());
-			//console.log(my_name);
 		
 		socket.emit('message', 
 					{	wid  : 'message_'+wid,
@@ -46,11 +41,9 @@ var Chat = function() {
 	function _setUniqueChatKey() {
 		var values = new Array();
 		var search = window.location.search.substring(1).split("&");
-		//values = new Array();
 		for(var i = 0; i < search.length; i++) {
 			pairs = search[i].split("=");
 			values[pairs[0]] = pairs[1];
-			//console.log(values[pairs[0]]+ "<="+ pairs[0]);
 		}
 		return values['wid'];
 	}
@@ -58,7 +51,6 @@ var Chat = function() {
 	return {
 		init : function() {
 			wid = _setUniqueChatKey();
-			//console.log("chat should load here");
 			chat_enable = true;
 			_connectToServer();
 		},
@@ -66,11 +58,9 @@ var Chat = function() {
 			return chat_enable;
 		},
 		sendMessage : function(data) {
-			//console.log("inside Chat");
 			_sendMessage(data);
 		},
 		setName : function(name) {
-			// Informal chat, so only display first name
 			my_name = name.split(" ")[0];
 		},
 		getName : function() {

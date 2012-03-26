@@ -6,16 +6,18 @@
  * Title:       AwesomeSauce      URL coming soon
  * Description: Coming soon
  *
- * Tech:        Facebook API, JavaScript, jQuery, MySQL, Node.js,
- *              OpenTok API, PHP, Socket.io
+ * Tech:        Etherpad Lite, Facebook API, JavaScript, jQuery, MySQL,
+ *              Node.js, OpenTok API, PHP, Socket.io
  * Last Update: March 26th, 2012
  ***********************************************************************/
  
  NOTE: *** 3rd PARTY LIBRARIES HAVE BEEN OMITTED FROM THE PUBLIC REPO ***
  
- Libraries Omitted:  jQuery        http://www.jquery.com
-                     FBook PHP SDK https://github.com/facebook/facebook-php-sdk
-                     Node.js       http://nodejs.org/
-                     OpenTok       http://www.tokbox.com
-                     Socket.io     http://socket.io
-                     Timepicker    http://trentrichardson.com/examples/timepicker/
+ Libraries Omitted:  jQuery          http://www.jquery.com
+                     Etherpad Lite   http://etherpad.org/
+                     Etherpad Plugin https://github.com/johnyma22/etherpad-lite-jquery-plugin
+                     FBook PHP SDK   https://github.com/facebook/facebook-php-sdk
+                     Node.js         http://nodejs.org/
+                     OpenTok         http://www.tokbox.com
+                     Socket.io       http://socket.io
+                     Timepicker      http://trentrichardson.com/examples/timepicker/
