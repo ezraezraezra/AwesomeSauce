@@ -1,10 +1,17 @@
 /**
  * @author Ezra Velazquez
- * Original basic functionality code by: TokBox
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awesomesauce.opentok.com
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ * Note:        Original basic functionality code by: TokBox
+ * 
  */
-
-console.log("hello world");
-
 var OpenTok = function() {
 	var apiKey = 13249262; // OpenTok sample API key. Replace with your own API key.
 	var sessionId = '153975e9d3ecce1d11baddd2c9d8d3c9d147df18'; // Replace with your session ID.
@@ -22,8 +29,8 @@ var OpenTok = function() {
 	//  LINK CLICK HANDLERS
 	//--------------------------------------
 	function connect() {
-		console.log(token);
-		console.log(sessionId);
+		//console.log(token);
+		//console.log(sessionId);
 		session.connect(apiKey, token);
 	}
 
@@ -43,14 +50,14 @@ var OpenTok = function() {
                                             subscribeToAudio: true};
 			}
 			else {
-				console.log("other");
+				//console.log("other");
 				// a student, figure out what to do
 				insertStudent('', 'me');				
 				$("#"+video_feed).parent().css("zIndex", 100);
 				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
 				
 			}
-			console.log(video_feed);
+			//console.log(video_feed);
 			
 			var parentDiv = document.getElementById(video_feed);
 			var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
@@ -123,7 +130,7 @@ var OpenTok = function() {
 		// For testing purposes, it all goes to instructor currently!
 		//console.log(stream);
 		connection_data = getConnectionData(stream['connection']);
-		console.log(connection_data);
+		//console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
 			$(".instructor_name.classroom_labels").html(connection_data['name'] + " - Instructor");
 			// create the video thing here
@@ -133,7 +140,7 @@ var OpenTok = function() {
 			subscriberProps = {width: 300, height: 250, subscribeToAudio: true};
 		}
 		else {
-			console.log("need to put a label on someone, this one: "+connection_data['name']);
+			//console.log("need to put a label on someone, this one: "+connection_data['name']);
 			
 		}
 		
@@ -142,8 +149,8 @@ var OpenTok = function() {
 		if (stream.connection.connectionId == session.connection.connectionId) {
 			Chat.setName(connection_data['name']);
 			if(label_set == false) {
-				console.log("HIERE");
-				console.log(video_feed);
+				//console.log("HIERE");
+				//console.log(video_feed);
 				//$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
 				$("#user_me").parent().children(":first").html(connection_data['name']);
 			}
@@ -151,8 +158,8 @@ var OpenTok = function() {
 		}
 		
 		if(label_set == false) {	
-			console.log("sending this name to be created: "+connection_data['name']);
-			console.log("this is the student_counter: "+student_counter);
+			//console.log("sending this name to be created: "+connection_data['name']);
+			//console.log("this is the student_counter: "+student_counter);
 			insertStudent(connection_data['name'], student_counter);
 			
 			subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
@@ -202,7 +209,7 @@ var OpenTok = function() {
 		for(var i = 0; i < search.length; i++) {
 			pairs = search[i].split("=");
 			values[pairs[0]] = pairs[1];
-			console.log(values[pairs[0]]+ "<="+ pairs[0]);
+			//console.log(values[pairs[0]]+ "<="+ pairs[0]);
 		}
 	}
 	
@@ -216,7 +223,7 @@ var OpenTok = function() {
 				"type" : values['type'],
 				"wid" : values['wid'],	
 			}, function(data) {
-				console.log(data);
+				//console.log(data);
 				//sessionId = data.session[0];
 				sessionId = data.session;
 				token = data.token;
