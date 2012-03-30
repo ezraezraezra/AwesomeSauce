@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		
+		<style type="text/css">
+			body {
+				font-family: Helvetica;
+				color: #313133;
+			}
+			.container_content_body_group_result {
+				width: 900px;
+				/*padding: 15px;*/
+				margin: 20px 0;
+				background-color: #E0E0E0;
+				cursor: pointer;
+			}
+			.container_content_body_group_result_user_img {
+				width: 64px;
+				height: 64px;
+				background-position: center;
+			}
+			.container_content_body_group_result_user_img_fb {
+				background-image: url("https://graph.facebook.com/1088730508/picture?type=normal");
+				background-size: 100%;
+				background-position:top;
+			}
+			.container_content_body_group_result_user_img_bg{
+				background-image: url('../assets/img/user_50.png');
+				background-position: 15px 15px;
+				background-repeat : no-repeat;
+				/*background-size: 100px 100px;*/
+				padding: 15px;
+			}
+			.container_content_body_group_result_left {
+				float: left;
+			}
+			.container_content_body_group_result_middle {
+				float: left;
+				padding: 15px 0px;
+				width: 670px;
+			}
+			.container_content_body_group_result_middle ul {
+				float: left;
+				width: 100%;
+				padding: 0px;
+				margin: 0px;
+				list-style-type: none;
+				margin-left: -5px;
+				font-weight: bold;
+			}
+			.container_content_body_group_result_middle li.first_list {
+				border: none;
+			}
+			.container_content_body_group_result_middle li {
+				display: inline;
+				border-left: 1px solid black;
+				padding-left: 5px;
+				color: #3DA6F4;
+				font-size: 14px;
+				padding-right: 5px;
+			}
+			.container_clear {
+				clear: both;
+			}
+			.container_content_body_group_result_info_title {
+				display: block;
+				font-size: 24px;
+				font-weight: bold;
+			}
+			.container_content_body_group_result_user_name {
+				display: block;
+				font-size: 16px;
+			}
+			.container_content_body_group_result_right {
+				background-color: green;
+				padding: 0px 15px;
+				float: right;
+				width: 100px;
+				height: 94px;
+				text-align: center;
+			}
+			.container_content_body_group_result_date_number {
+				display: block;
+				font-size: 50px;
+				font-weight: bold;
+			}
+			.container_content_body_group_result_date_month {
+				display: block;
+				font-size: 26px;
+				font-weight: bold;
+				margin-top: -10px;
+			}
+			.container_content_body_group_result_date_time {
+				display: block;
+				font-size: 14px;
+				font-weight: bold;
+				margin-top: -5px;
+			}
+			
+		</style>
+		<script type="text/javascript" src="../js/lib/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".container_content_body_group_result").hover(
+				   function() {
+				   		$(this).css("backgroundColor", "green");
+					
+				}, function() {
+						$(this).css("backgroundColor", "#E0E0E0");
+				}).click(function() {
+					console.log("workshop clicked. Show more info, please");
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div class="container_content_body_group_result" id="w_13">
+			<div class="container_content_body_group_result_left">
+				<div class="container_content_body_group_result_user_img container_content_body_group_result_user_img_bg">
+					<div class="container_content_body_group_result_user_img container_content_body_group_result_user_img_fb"> </div>
+				</div>
+			</div>
+			<div class="container_content_body_group_result_middle">
+				<span class="container_content_body_group_result_info_title">Node.js</span>
+				<span class="container_content_body_group_result_user_name">Ezra Velazquez</span>
+				<ul>
+					<li class="first_list">node.js</li>
+					<li>node</li>
+					<li>stream.io</li>
+					<li>javascript</li>
+				</ul>
+			</div>
+			<div class="container_content_body_group_result_right">
+				<span class="container_content_body_group_result_date_number">25</span>
+				<span class="container_content_body_group_result_date_month">DEC</span>
+				<span class="container_content_body_group_result_date_time">5:00 AM</span>
+			</div>
+			<div class="container_clear">
+				
+			</div>
+		</div>
+	</body>
+</html>
