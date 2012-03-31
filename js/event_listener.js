@@ -289,12 +289,12 @@ var LISTENER = function() {
 		
 		
 		// New stuff
-		$("#container_logo").on("click", function() { _homeListener('home')});
+		$(".container_content_header_logo").on("click", function() { _homeListener('home')});
 		$form.on("submit", function(e) { _formListener(e,$(this)); });
 		$button.on("click", function() { _buttonListener($(this)); });
 		$(".container_content_body_group_result").on("click", function() { _displayModal('view', $(this)); })
-												 .on("mouseenter", function() { $(this).css("backgroundColor", "green"); }) 
-												 .on("mouseleave", function() { $(this).css("backgroundColor", "#E0E0E0"); })
+												 .on("mouseenter", function() { $(this).css("backgroundColor", "#3DA6F4"); }) 
+												 .on("mouseleave", function() { $(this).css("backgroundColor", "#F0BA32"); })
 	}
 	
 	$(document).ready(function() {

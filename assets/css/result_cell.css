@@ -11,7 +11,8 @@ body {
 	width: 900px;
 	/*padding: 15px;*/
 	margin: 20px 0;
-	background-color: #E0E0E0;
+	/*background-color: #E0E0E0;*/
+	background-color: #F0BA32;
 	cursor: pointer;
 }
 .container_content_body_group_result_user_img {
@@ -55,7 +56,8 @@ body {
 	display: inline;
 	border-left: 1px solid black;
 	padding-left: 5px;
-	color: #3DA6F4;
+	/*color: #3DA6F4;*/
+	color: #DD0238;
 	font-size: 14px;
 	padding-right: 5px;
 }
@@ -78,6 +80,7 @@ body {
 	width: 100px;
 	height: 94px;
 	text-align: center;
+	/*color: #F5F5F5;*/
 }
 .container_content_body_group_result_date_number {
 	display: block;
@@ -98,6 +101,7 @@ body {
 }
 .container_content_body_group_search_value {
 	color: #3DA6F4;
+	font-weight: bold;
 }
 .hidden_info {
 	display: none;

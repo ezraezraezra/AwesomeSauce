@@ -8,7 +8,7 @@
  *
  * Tech:        Etherpad Lite, Facebook API, JavaScript, jQuery, MySQL,
  *              Node.js, OpenTok API, PHP, Socket.io
- * Last Update: March 26th, 2012
+ * Last Update: March 31st, 2012
  ***********************************************************************/
  
  NOTE: *** 3rd PARTY LIBRARIES HAVE BEEN OMITTED FROM THE PUBLIC REPO ***
@@ -21,3 +21,7 @@
                      OpenTok         http://www.tokbox.com
                      Socket.io       http://socket.io
                      Timepicker      http://trentrichardson.com/examples/timepicker/
+
+
+SPECIAL THANKS
+Logo Graphic:        Austin Hall     http://everythingforever.tumblr.com/
