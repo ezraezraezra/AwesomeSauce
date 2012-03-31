@@ -92,45 +92,47 @@ var LISTENER = function() {
 			$(".modal form :input").attr('readonly', true);
 			$(".intructor_field").css("display", "block");
 			
-			$parent = $object.parent();
+			console.log($object);
 			
-			//Only display 'register' if not in 'teach view'
-			if(window.location.search.indexOf('d=teach') != -1) {
-				$(".modal_button_bottom.modal_learn.button").css("display", "none");
-			}
-			else {
-				$(".modal_button_bottom.modal_learn.button").css("display", "block");
-			}
-			
+			// $parent = $object.parent();
+// 			
+			// //Only display 'register' if not in 'teach view'
+			// if(window.location.search.indexOf('d=teach') != -1) {
+				// $(".modal_button_bottom.modal_learn.button").css("display", "none");
+			// }
+			// else {
+				// $(".modal_button_bottom.modal_learn.button").css("display", "block");
+			// }
+// 			
 			//Workshop id
-			log($parent.attr("wid"));
-			$(".modal_button_bottom.modal_learn.button").attr("wid", $parent.attr("wid"));
-			
+			log($object.attr("id"));
+			$(".modal_button_bottom.modal_learn.button").attr("wid", $object.attr("id"));
+ 			
 			//Title
-			$(".modal form :input[name=title]").val($parent.children(":nth-child(3)").children(":nth-child(1)").text());
-			
+			$(".modal form :input[name=title]").val($object.children(":nth-child(2)").children(":nth-child(1)").text());
+ 			
 			//Technology
 			var tech_list = [];
-			$parent.children(":nth-child(3)").children(":nth-child(2)").find("li").each(function() { tech_list.push($(this).text()) });
+			$object.children(":nth-child(2)").children(":nth-child(3)").find("li").each(function() { tech_list.push($(this).text()) });
 			console.log(tech_list);
 			var tech_list_string = tech_list.join(", ");
 			$(".modal form :input[name=technology]").val(tech_list_string);
-			
+ 			
 			//Description
-			$(".modal form :input[name=descrition]").val($parent.children(":nth-child(5)").text());
-			
+			$(".modal form :input[name=descrition]").val($object.children(":nth-child(4)").children(":nth-child(1)").text());
+ 			
 			//Date & Time
-			var date = $parent.children(":nth-child(1)").children(":nth-child(1)").text();
-			var time = $parent.children(":nth-child(1)").children(":nth-child(2)").text();
+			var date = $object.children(":nth-child(4)").children(":nth-child(2)").text();
+			var time = $object.children(":nth-child(4)").children(":nth-child(3)").text();
 			$(".modal form :input[name=date]").val(date + " @ " + time);
-			
+ 			
 			//Instructor
-			var image_src = $parent.children(":nth-child(2)").children(":nth-child(1)").attr("src");
-			$(".modal_instructor_img_update").attr("src", image_src);
-			$(".modal_instructor_name").text($parent.children(":nth-child(2)").children(":nth-child(2)").text());
-			$(".modal_instructor_update_rating_good").text($parent.children(":nth-child(2)").children(":nth-child(2)").attr("rg"));
-			$(".modal_instructor_update_rating_bad").text($parent.children(":nth-child(2)").children(":nth-child(2)").attr("rb"));
-			
+			var image_src = $object.children(":nth-child(1)").children(":nth-child(1)").children(":nth-child(1)").css("backgroundImage");
+			$(".modal_instructor_img_update").css("backgroundImage", image_src);
+			$(".modal_instructor_name").text($object.children(":nth-child(2)").children(":nth-child(2)").text());
+			$(".modal_instructor_update_rating_good").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rg"));
+			$(".modal_instructor_update_rating_bad").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rb"));
+
 			
 			$modal.fadeIn();
 		}
@@ -293,6 +295,12 @@ var LISTENER = function() {
 		$(".modal form :input[name=date]").datetimepicker({ ampm: true, stepMinute: 15, timeFormat: 'h:mm TT' });
 		
 		$(".modal_url_url").on("click", function() { $(this).select(); });
+		
+		
+		// New stuff
+		$(".container_content_body_group_result").on("click", function() { _displayModal('view', $(this)); })
+												 .on("mouseenter", function() { $(this).css("backgroundColor", "green"); }) 
+												 .on("mouseleave", function() { $(this).css("backgroundColor", "#E0E0E0"); })
 	}
 	
 	$(document).ready(function() {

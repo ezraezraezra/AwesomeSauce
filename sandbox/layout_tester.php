@@ -12,10 +12,11 @@
 		<link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/search_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler.css" />
-		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />
+		<!--<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />-->
 		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/classroom.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/result_cell.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/lib/jquery-ui-timepicker-addon.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/lib/smoothness/jquery-ui-1.8.18.custom.css">
 		<script type="text/javascript" src="../js/lib/jquery-1.7.1.min.js"></script>

@@ -38,14 +38,15 @@
 				<span class="modal_title_label">Instructor</span>
 				<div class="modal_instructor_update">
 					<div class="modal_instructor_update_info">
-						<img src="../assets/img/user_50.png" class="modal_instructor_img_update" />
-						<div class="modal_instructor_name">Ezra Velazquez</div>
+						<!--<img src="../assets/img/user_50.png" class="modal_instructor_img_update" />-->
+						<div class="modal_instructor_img_update"> </div>
+						<div class="modal_instructor_name"></div>
 					</div>
 					<div class="modal_instructor_update_rating">
 						<img class="modal_instructor_update_img" src="../assets/img/rating_good.png">
-						<div class="modal_instructor_update_rating_good">150</div>
+						<div class="modal_instructor_update_rating_good"></div>
 						<img class="modal_instructor_update_img" src="../assets/img/rating_bad.png">
-						<div class="modal_instructor_update_rating_bad">2</div>
+						<div class="modal_instructor_update_rating_bad"></div>
 					</div>
 					
 					<div class="container_clear"></div>

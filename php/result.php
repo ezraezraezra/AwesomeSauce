@@ -25,6 +25,24 @@
 		return $time_format;
 	}
 	
+	function displayDateFormatter($mysql_date, $format) {
+		$display = '';	
+		switch($format) {
+			case('day'):
+				$display = 'd';
+				break;
+			case('month'):
+				$display = 'M';
+				break;
+			case('time'):
+				$display = 'g:i A';
+				break;
+		}
+			
+		$time_format = date($display, strtotime($mysql_date));
+		return $time_format;
+	}
+	
 	function tagFormatter($mysql_tags) {
 		$tags = explode(" ", $mysql_tags);
 		$tag_display = '';
@@ -44,11 +62,43 @@
 	
 	function getImage($id) {
 		//$user_img = '../assets/img/user_50.png';
-		return "https://graph.facebook.com/$id/picture";	
+		return "https://graph.facebook.com/$id/picture?type=normal";	
 		
 	}
 	
 	function displayPage($results) {
+		$print = '';
+		for($i = 0; $i < count($results); $i++) {
+			$print.='<div class="container_content_body_group_result" id="'.$results[$i]['id'].'">';
+			$print.='<div class="container_content_body_group_result_left">';
+			$print.='<div class="container_content_body_group_result_user_img container_content_body_group_result_user_img_bg">';
+			$print.='<div class="container_content_body_group_result_user_img container_content_body_group_result_user_img_fb" style=\'background-image: url("'.getImage($results[$i]['instructor']['fb_id']).'");\'> </div>'; // insert fb image here as style
+			$print.='</div>';
+			$print.='</div>';
+			$print.='<div class="container_content_body_group_result_middle">';
+			$print.='<span class="container_content_body_group_result_info_title">'.$results[$i]['title'].'</span>';
+			$print.='<span class="container_content_body_group_result_user_name" fid="'.$results[$i]['instructor']['fb_id'].'" rg="'.$results[$i]['instructor']['rating_good'].'" rb="'.$results[$i]['instructor']['rating_bad'].'">'.$results[$i]['instructor']['name'].'</span>';
+			$print.='<ul>';
+			$print.=tagFormatter($results[$i]['tags']);
+			$print.='</ul>';
+			$print.='</div>';
+			$print.='<div class="container_content_body_group_result_right">';
+			$print.='<span class="container_content_body_group_result_date_number">'.displayDateFormatter($results[$i]['date'],'day').'</span>'; // Special
+			$print.='<span class="container_content_body_group_result_date_month">'.strtoupper(displayDateFormatter($results[$i]['date'],'month')).'</span>'; // Special
+			$print.='<span class="container_content_body_group_result_date_time">'.displayDateFormatter($results[$i]['date'],'time').'</span>'; // Special
+			$print.='</div>';
+			$print.='<div class="container_clear">';
+			$print.='<span class="hidden_info workshop_description">'.$results[$i]['description'].'</span>';
+			$print.='<span class="hidden_info workshop_date">'.dateFormatter($results[$i]['date']).'</span>'; // Hidden from user
+			$print.='<span class="hidden_info workshop_time">'.timeFormatter($results[$i]['date']).'</span>'; // Hidden from user
+			$print.='</div>';
+			$print.='</div>';
+		}
+
+		return $print;
+	}
+	
+	function displayPage_bk($results) {
 		
 		$print = '';
 		for($i = 0; $i < count($results); $i++) {

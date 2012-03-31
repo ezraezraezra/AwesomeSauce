@@ -191,7 +191,7 @@
 			
 			
 			
-			$request = "SELECT DISTINCT w.id AS workshop_id, w.date, w.title, w.description, w.tags, i.id AS instructor_id, i.name, i.fb_id, i.rating_good, i.rating_bad FROM workshop AS w, instructor AS i, workshop_X_instructor AS wXi WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id".$request_query." ORDER BY date DESC, title ASC;";
+			$request = "SELECT DISTINCT w.id AS workshop_id, w.date, w.title, w.description, w.tags, i.id AS instructor_id, i.name, i.fb_id, i.rating_good, i.rating_bad FROM workshop AS w, instructor AS i, workshop_X_instructor AS wXi WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id".$request_query." ORDER BY date ASC, title ASC;";
 			$request = $this->submit_info($request, $this->connection, true);
 			
 			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));

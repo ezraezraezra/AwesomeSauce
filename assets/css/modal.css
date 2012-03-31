@@ -266,3 +266,12 @@
 .workshop_url {
 	display: none;
 }
+.modal_instructor_img_update {
+	width: 50px;
+	height: 50px;
+	background-position: center;
+	background-size: 100%;
+	background-position:top;
+	background-image: url('../img/user_50.png');
+	float: left;
+}
