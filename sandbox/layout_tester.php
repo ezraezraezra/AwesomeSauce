@@ -10,10 +10,8 @@
 		<title>AwesomeSauce</title>
 		<link rel="stylesheet" type="text/css" href="../assets/css/overall.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/index.css" />
-		<link rel="stylesheet" type="text/css" href="../assets/css/search_bar.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/scheduler.css" />
-		<!--<link rel="stylesheet" type="text/css" href="../assets/css/scheduler_group.css" />-->
-		<link rel="stylesheet" type="text/css" href="../assets/css/post_bar.css" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/content_header.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/modal.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/classroom.css" />
 		<link rel="stylesheet" type="text/css" href="../assets/css/result_cell.css" />
@@ -27,22 +25,21 @@
 	<body>
 		<?php printFacebokHTML(); ?>
 		<div id="container_main">
-			<?php 
-				if($display == 'learn' || $display == 'teach') {
+			<?php
+				if($display == 'classroom') {
+					include("../php/header");
+				}
+				else {
 					include("../php/modal.php");
 				}
-				include("../php/header.php");
 			?>
 			<div id="container_middle">
 				<?php
-					if($display == 'learn' || $display == 'teach') {
-						include('../php/scheduler.php');
-					} 
-					else if($display == 'classroom') {
+					if($display == 'classroom') {
 						include('../php/classroom.php');
 					}
 					else {
-						include("../php/home.php");
+						include("../php/scheduler.php");
 					}
 				?>
 			</div>

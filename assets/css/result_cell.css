@@ -96,6 +96,9 @@ body {
 	font-weight: bold;
 	margin-top: -5px;
 }
+.container_content_body_group_search_value {
+	color: #3DA6F4;
+}
 .hidden_info {
 	display: none;
 }

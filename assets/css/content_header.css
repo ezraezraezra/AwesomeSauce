@@ -1,0 +1,52 @@
+.container_content_header {
+	background-color: transparent;
+	width: 900px;
+}
+.container_content_header_search {
+	position: relative;
+	float: right;
+	color: blue;
+	width: 344px;
+	margin-top: 25px;
+}
+.container_content_header_logo {
+	position: relative;
+	float: left;
+	width: 250px;
+	height: 100px;
+	background-color: green;
+}
+.container_clear {
+	clear: both;
+}
+#container_content_header_search_text {
+	position: relative;
+	height: 40px;
+	width: 280px;
+	font-size: 28px;
+	outline: none;
+	padding-left: 10px;
+	padding-right: 50px;
+}
+#container_content_header_search_submit {
+	position: relative;
+	background-image: url('../img/search.png');
+	background-repeat: no-repeat;
+	height: 35px;
+	width: 35px;
+	border: none;
+	cursor: pointer;
+	background-size: 100%;
+	background-position: center;
+	background-color: transparent;
+	float: right;
+	margin-top: -40px;
+	margin-right: 8px;
+}
+.container_content_header_post {
+	float: right;
+	margin-right: 20px;
+	margin-top: 25px;
+	font-size: 28px;
+	padding: 7px 15px;
+}

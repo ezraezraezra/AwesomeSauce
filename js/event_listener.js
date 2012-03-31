@@ -178,21 +178,10 @@ var LISTENER = function() {
 	function _buttonListener($object) {
 		switch($.trim($object.text()))
 		{
-			case 'Teach':
-				_homeListener('teach');
-				break;
-			case 'Learn':
-				_homeListener('learn');
-				break;
-			case 'Post New Workshop':
+			case 'create':
 				_displayModal('fill', $object);
 				break;
-			case 'More Info':
-				_displayModal('view', $object);
-				break;
-			case 'Create':
-				//_createWorkshop($object);
-				break;
+
 			case 'Register':
 				log("Register to workshop");
 				_registerForWorkshop($object);
@@ -205,13 +194,15 @@ var LISTENER = function() {
 	
 	function _formListener(e, $object) {
 		e.preventDefault();
+		console.log("form called");
+		
 		switch($object.attr("id")) {
-			// Search for workshop
-			case 'container_content_header_learn_search_form':
-				window.location = learn_view + "&q=" + $object.children("[type=text]").val();
+			case 'container_content_header_search_form':
+				// Search for workshop
+				window.location = "?&q=" + $object.children("[type=text]").val();
 				break;
-			// Create workshop
 			case 'modal_form':
+				// Create workshop
 				console.log("modal_form called. You want to create");
 				var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
 				console.log(data_to_send);
@@ -285,11 +276,11 @@ var LISTENER = function() {
 		$form = $('form');
 		
 		
-		$("#container_logo").on("click", function() { _homeListener('home')});
-		$button.on("click", function() { _buttonListener($(this)); });
+		
+		
 		$modal_backdrop.on("click", function() { _hideModal(); });
 		//$("form").submit(function(e) { e.preventDefault(); });
-		$form.on("submit", function(e) { _formListener(e,$(this)); });
+		
 		
 		$(".modal form :input[name=date]").click(function() { _dateTimeListener($(this), true); });
 		$(".modal form :input[name=date]").datetimepicker({ ampm: true, stepMinute: 15, timeFormat: 'h:mm TT' });
@@ -298,6 +289,9 @@ var LISTENER = function() {
 		
 		
 		// New stuff
+		$("#container_logo").on("click", function() { _homeListener('home')});
+		$form.on("submit", function(e) { _formListener(e,$(this)); });
+		$button.on("click", function() { _buttonListener($(this)); });
 		$(".container_content_body_group_result").on("click", function() { _displayModal('view', $(this)); })
 												 .on("mouseenter", function() { $(this).css("backgroundColor", "green"); }) 
 												 .on("mouseleave", function() { $(this).css("backgroundColor", "#E0E0E0"); })
