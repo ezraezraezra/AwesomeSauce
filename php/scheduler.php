@@ -6,7 +6,7 @@
 				array('Gym, tan, ', 'LANDRY'),
 				array('Don\'t tase me ','BRO'),
 				array('Don\'t break the ','BUILD')
-			);
+			);		
 			
 	$rand = rand(0, count($quotes) - 1);
 ?>

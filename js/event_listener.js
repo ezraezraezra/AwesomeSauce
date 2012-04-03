@@ -31,15 +31,12 @@ var LISTENER = function() {
 	}
 	
 	function _facebookLoginScreen(callback) {
-		console.log("_facebookLoginScreen");
 		if(fbObj.status == false) {
-			console.log("false");
 			$("#modal_form").css("display", "none");
 			$(".modal_facebook_login").css("display", "block");
 			next_function = callback;
 		}
 		else {
-			console.log("callback");
 			callback();
 		}
 			
@@ -48,12 +45,12 @@ var LISTENER = function() {
 	function _facebookLoginButton() {
 		FB.login(function(response) {
 			
-			console.log("log in # 1");
-			console.log(response);
-			fbObj.id = response.authResponse.userID;
-			fbObj.token = response.authResponse.accessToken;
 			
-			if(response.status == 'connected') {
+			if(response.status == 'connected' || response.status =="200") {
+				fbObj.status = true;
+				fbObj.id = response.authResponse.userID;
+				fbObj.token = response.authResponse.accessToken;
+				
 				$(".modal_facebook_login").css("display", "none");
 				next_function();
 			}
@@ -70,7 +67,7 @@ var LISTENER = function() {
 				console.log("access token: "+ response.authResponse.accessToken);
 				fbObj.id = response.authResponse.userID;
 				fbObj.token = response.authResponse.accessToken;
-				
+				fbObj.status = true;
 				
 				//callback();
 			});
@@ -177,13 +174,18 @@ var LISTENER = function() {
 		
 	}
 	
-	function _createWorkshop() {
-		log('modal:crate workshop called');
-		
-		
-		// Call server
-		
-		_hideModal();
+	function _createWorkshop(data_to_send) {		
+		console.log("data_to_send"+ data_to_send);
+		$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+			console.log(data);
+			// Should probably add a 'progress bar'
+			
+			
+			_fillModalUrl(data);
+			
+		});
+		$("#modal_form").css("display", "none");
+		$(".modal_progress").css("display", "block");
 	}
 	
 	function _registerForWorkshop($object) {
@@ -198,6 +200,8 @@ var LISTENER = function() {
 			_fillModalUrl(data);
 			//_hideModal();
 		});
+		$("#modal_form").css("display", "none");
+		$(".modal_progress").css("display", "block");
 	}
 	
 	function _hideModal() {
@@ -209,6 +213,7 @@ var LISTENER = function() {
 	function _cleanModal() {
 		$(".modal form :input").val("");
 		
+		$(".modal_progress").css("display", "none");
 		$(".modal_facebook_login").css("display", "none");
 		$(".workshop_url").css("display", "none");
 		$("#modal_form").css("display", "block");
@@ -261,15 +266,7 @@ var LISTENER = function() {
 				 * Facebook check here
 				 */
 				_facebookLoginScreen(function() {
-					console.log("data_to_send"+ data_to_send);
-					$.get('../php/server_ajax.php?'+data_to_send, function(data) {
-						console.log(data);
-						// Should probably add a 'progress bar'
-						
-						
-						_fillModalUrl(data);
-						
-					});
+					_createWorkshop(data_to_send);
 				});
 				
 /*				
@@ -313,13 +310,7 @@ var LISTENER = function() {
 		$(".modal_url_url").val(url);
 		$(".modal_url_date").html(url_date);
 		
-		// Display modal window that contains url
-		// When user clicks outside of it, remove it
-		// and bring it back to normal
-		
-		
-		
-		$("#modal_form").css("display", "none");
+		$(".modal_progress").css("display", "none");
 		$(".workshop_url").css("display", "block");
 		
 		//_hideModal();

@@ -2,6 +2,15 @@
 ?>
 <div class="modal_container">
 	<div class="modal">
+		<div class="modal_progress">
+			<span class="modal_overall_title modal_progress">Contacting Server</span>
+			<div class="modal_progress_bar">	
+				<div id="modal_progress_ball_1" class="modal_progress_ball"></div>
+				<div id="modal_progress_ball_2" class="modal_progress_ball"></div>
+				<div id="modal_progress_ball_3" class="modal_progress_ball"></div>
+				<div id="modal_progress_ball_4" class="modal_progress_ball"></div>
+			</div>
+		</div>
 		<div class="workshop_url">
 			<span class="modal_overall_title modal_url">AwesomeSauce!</span>
 			<div class="modal_url_info">
