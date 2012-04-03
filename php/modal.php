@@ -9,6 +9,13 @@
 			</div>
 			<textarea class="modal_url_url" readonly="readonly"></textarea>
 		</div>
+		<div class="modal_facebook_login">
+			<span class="modal_overall_title modal_facebook">Hold On There</span>
+			<div class="modal_login_content">
+				<span>You'll need to login with Facebook in order to continue</span>
+			</div>
+			<div class="modal_facebook_button button">Login with Facebook</div>
+		</div>
 		<form id="modal_form"> 
 			<span class="modal_overall_title modal_teach">Create A Workshop</span>
 			<span class="modal_overall_title modal_learn">More Information</span>

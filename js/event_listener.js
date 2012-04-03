@@ -22,11 +22,43 @@ var LISTENER = function() {
 	var $modal_backdrop = '';
 	
 	var date_picker_status = false;
+	var next_function;
 	
 	function log(message) {
 		if(DEBUG === true) {
 			console.log(message);
 		}
+	}
+	
+	function _facebookLoginScreen(callback) {
+		console.log("_facebookLoginScreen");
+		if(fbObj.status == false) {
+			console.log("false");
+			$("#modal_form").css("display", "none");
+			$(".modal_facebook_login").css("display", "block");
+			next_function = callback;
+		}
+		else {
+			console.log("callback");
+			callback();
+		}
+			
+	}
+	
+	function _facebookLoginButton() {
+		FB.login(function(response) {
+			
+			console.log("log in # 1");
+			console.log(response);
+			fbObj.id = response.authResponse.userID;
+			fbObj.token = response.authResponse.accessToken;
+			
+			if(response.status == 'connected') {
+				$(".modal_facebook_login").css("display", "none");
+				next_function();
+			}
+			
+		});
 	}
 	
 	function _facebookLoginClick(callback) {
@@ -38,14 +70,20 @@ var LISTENER = function() {
 				console.log("access token: "+ response.authResponse.accessToken);
 				fbObj.id = response.authResponse.userID;
 				fbObj.token = response.authResponse.accessToken;
-				callback();
+				
+				
+				//callback();
 			});
 		}
 		else {
 			console.log("already loged in from previous session");
 			console.log("user id: " + fbObj.id);
 			console.log("access token: "+ fbObj.token);
-			callback();
+			
+			
+			
+			
+			//callback();
 		}
 	}
 	
@@ -171,6 +209,7 @@ var LISTENER = function() {
 	function _cleanModal() {
 		$(".modal form :input").val("");
 		
+		$(".modal_facebook_login").css("display", "none");
 		$(".workshop_url").css("display", "none");
 		$("#modal_form").css("display", "block");
 	}
@@ -184,8 +223,17 @@ var LISTENER = function() {
 
 			case 'Register':
 				log("Register to workshop");
-				_registerForWorkshop($object);
+				
+				_facebookLoginScreen(function() {
+					_registerForWorkshop($object);
+				});
+				
+				
+				//_registerForWorkshop($object);
 				break;
+			case 'Login with Facebook':
+				console.log("login called");
+				_facebookLoginButton();
 			default:
 				log($.trim($object.text()));
 				break;	
@@ -207,6 +255,24 @@ var LISTENER = function() {
 				var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
 				console.log(data_to_send);
 				//console.log(fbObj.id);
+				
+				
+				/*
+				 * Facebook check here
+				 */
+				_facebookLoginScreen(function() {
+					console.log("data_to_send"+ data_to_send);
+					$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+						console.log(data);
+						// Should probably add a 'progress bar'
+						
+						
+						_fillModalUrl(data);
+						
+					});
+				});
+				
+/*				
 				$.get('../php/server_ajax.php?'+data_to_send, function(data) {
 					console.log(data);
 					// Should probably add a 'progress bar'
@@ -215,7 +281,7 @@ var LISTENER = function() {
 					_fillModalUrl(data);
 					
 				});
-				
+*/				
 				break;
 			// Chat interface
 			case 'chat_form':

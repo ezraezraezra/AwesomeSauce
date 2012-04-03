@@ -31,11 +31,14 @@ var fbObj =  {
        * http://facebook.stackoverflow.com/questions/3548493/how-to-detect-when-facebooks-fb-init-is-complete
        */
       FB.getLoginStatus(function(response) {
+      	console.log(response.status);
       	if(response.status != 'connected') {
       		fbObj.status = false;
       	}
       	else {
       		fbLoginStatus = true;
+      		fbObj.status = true;
+      		console.log("in here");
       		fbObj.id = response.authResponse.userID;
       		fbObj.token = response.authResponse.accessToken;
       	}
