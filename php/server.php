@@ -169,7 +169,8 @@
 					$request_query = '';
 				}
 				else {
-					$request_query = " AND w.description LIKE '%".$query."%' OR w.title LIKE '%".$query."%' OR w.tags LIKE '%".$query."%' OR i.name LIKE '%".$query."%'";
+					//$request_query = '';
+					$request_query = " AND (w.description LIKE '%".$query."%' OR w.title LIKE '%".$query."%' OR w.tags LIKE '%".$query."%' OR i.name LIKE '%".$query."%')";
 				}
 				
 				$mysqldate = date( 'Y-m-d H:i:s', time() );
