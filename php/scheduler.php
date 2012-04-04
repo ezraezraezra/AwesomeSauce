@@ -3,9 +3,7 @@
 	
 	$quotes = array(
 				array('Like a ', 'BOSS'),
-				array('Gym, tan, ', 'LANDRY'),
-				array('Don\'t tase me ','BRO'),
-				array('Don\'t break the ','BUILD')
+				array('Haters gonna ','HATE')
 			);		
 			
 	$rand = rand(0, count($quotes) - 1);
@@ -16,21 +14,43 @@
 	
 	<div id="container_content_body">
 		<?php 
-			$group_name = "";
-			$group_name_sub = $_GET['q'];
-			if($group_name_sub == '') {
-				$group_name = $quotes[$rand][0];
-				$group_name_sub = $quotes[$rand][1];
+			if($display == 'me') {
+				$instructor_id = $facebook_userId;
+				
+				$group_name = 'Workshops I\'m ';
+				
+				
+				$group_name_sub = 'Attending';
+				$view = 'personal';
+				$query = 'attend';
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
+				
+				$group_name_sub = 'Leading';
+				$view = 'personal';
+				$query = 'teach';
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
+				
 			}
 			else {
-				$group_name = 'Search results for: ';
+		
+		
+				$group_name = "";
+				$group_name_sub = $_GET['q'];
+				if($group_name_sub == '') {
+					$group_name = $quotes[$rand][0];
+					$group_name_sub = $quotes[$rand][1];
+				}
+				else {
+					$group_name = 'Search results for: ';
+				}
+				
+				$view = 'learn';
+				$query = $_GET['q'];
+				$instructor_id = '0';
+				
+				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
+			
 			}
-			
-			$view = 'learn';
-			$query = $_GET['q'];
-			$instructor_id = '0';
-			
-			displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
 		?>
 	</div>
 </div>

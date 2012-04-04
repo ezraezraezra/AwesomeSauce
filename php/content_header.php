@@ -14,6 +14,7 @@
 	<div class="container_content_header_post button">
 		create
 	</div>
+	<div class="container_content_header_fb"></div>
 	
 	<div class="container_clear"></div>
 </div>

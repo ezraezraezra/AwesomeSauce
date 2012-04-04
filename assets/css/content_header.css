@@ -53,3 +53,16 @@
 	font-size: 28px;
 	padding: 7px 15px;
 }
+.container_content_header_fb {
+	float: right;
+	width: 46px;
+	height: 46px;
+	background-color: red;
+	margin-top: 25px;
+	margin-right: 15px;
+	cursor: pointer;
+	display: none;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: center;
+}

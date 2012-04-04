@@ -12,8 +12,15 @@
  */
 var fbObj =  {
 	status : false,
-	id : '1088730508',
-	token : ''
+	id : '0',//'1088730508',
+	token : '',
+	displayAvatar : function() {
+		console.log(this.id);
+		$(".container_content_header_fb").css( {
+													backgroundImage : "url('https://graph.facebook.com/"+ this.id +"/picture?type=normal')",
+													display : 'block'
+												});
+	}
 }
 
 	
@@ -41,6 +48,7 @@ var fbObj =  {
       		console.log("in here");
       		fbObj.id = response.authResponse.userID;
       		fbObj.token = response.authResponse.accessToken;
+      		fbObj.displayAvatar();
       	}
       });
     };

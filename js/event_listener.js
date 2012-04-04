@@ -30,6 +30,8 @@ var LISTENER = function() {
 		}
 	}
 	
+	
+	
 	function _facebookLoginScreen(callback) {
 		if(fbObj.status == false) {
 			$("#modal_form").css("display", "none");
@@ -50,6 +52,7 @@ var LISTENER = function() {
 				fbObj.status = true;
 				fbObj.id = response.authResponse.userID;
 				fbObj.token = response.authResponse.accessToken;
+				fbObj.displayAvatar();
 				
 				$(".modal_facebook_login").css("display", "none");
 				next_function();
@@ -351,7 +354,8 @@ var LISTENER = function() {
 		$button.on("click", function() { _buttonListener($(this)); });
 		$(".container_content_body_group_result").on("click", function() { _displayModal('view', $(this)); })
 												 .on("mouseenter", function() { $(this).css("backgroundColor", "#3DA6F4"); }) 
-												 .on("mouseleave", function() { $(this).css("backgroundColor", "#F0BA32"); })
+												 .on("mouseleave", function() { $(this).css("backgroundColor", "#F0BA32"); });
+		$(".container_content_header_fb").on("click", function() { window.location = home_view + "?d=me" });
 	}
 	
 	$(document).ready(function() {

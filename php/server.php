@@ -175,7 +175,21 @@
 				$mysqldate = date( 'Y-m-d H:i:s', time() );
 				$request_query = $request_query." AND w.date > '".$mysqldate."'";	
 			}
-			// Teach-View
+			// Personal-View
+			if(!strcasecmp($view, 'personal')) {
+				$mysqldate = date( 'Y-m-d H:i:s', time() );
+				
+				// Attending
+				if(!strcasecmp($query, 'attend')) {
+					$request_query = " AND s.id = wXs.student_id AND s.fb_id = '".$instructor_id."' AND w.date > '".$mysqldate."'";
+				}
+				// Teaching
+				else {
+					$request_query = " AND i.fb_id='".$instructor_id."' AND w.date > '".$mysqldate."'";
+				}
+			}
+/*
+			// OLD Teach-View
 			else {
 				$mysqldate = date( 'Y-m-d H:i:s', time() );
 				if(!strcasecmp($query, 'future')) {
@@ -187,11 +201,12 @@
 				
 				$request_query = " AND w.date ".$conditional." '".$mysqldate."' AND i.fb_id='".$instructor_id."'";
 			}
+*/			
 			
-			
-			
-			
+			$request = "SELECT DISTINCT w.id AS workshop_id, w.date, w.title, w.description, w.tags, i.id AS instructor_id, i.name, i.fb_id, i.rating_good, i.rating_bad FROM workshop AS w, instructor AS i, workshop_X_instructor AS wXi, workshop_X_student as wXs, student as s WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id".$request_query." ORDER BY date ASC, title ASC;";
+/*			
 			$request = "SELECT DISTINCT w.id AS workshop_id, w.date, w.title, w.description, w.tags, i.id AS instructor_id, i.name, i.fb_id, i.rating_good, i.rating_bad FROM workshop AS w, instructor AS i, workshop_X_instructor AS wXi WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id".$request_query." ORDER BY date ASC, title ASC;";
+ */
 			$request = $this->submit_info($request, $this->connection, true);
 			
 			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
