@@ -177,18 +177,32 @@ var LISTENER = function() {
 		
 	}
 	
-	function _createWorkshop(data_to_send) {		
-		console.log("data_to_send"+ data_to_send);
-		$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+	function _createWorkshop($object) {
+		$.getJSON("https://graph.facebook.com/"+fbObj.id, function(data) {
 			console.log(data);
-			// Should probably add a 'progress bar'
-			
-			
-			_fillModalUrl(data);
-			
+			var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name="+data.name;		
+			console.log("data_to_send"+ data_to_send);
+			$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+				console.log(data);
+				// Should probably add a 'progress bar'
+				
+				
+				_fillModalUrl(data);
+				
+			});
 		});
-		$("#modal_form").css("display", "none");
-		$(".modal_progress").css("display", "block");
+		// var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name="+fbObj.;		
+		// console.log("data_to_send"+ data_to_send);
+		// $.get('../php/server_ajax.php?'+data_to_send, function(data) {
+			// console.log(data);
+			// // Should probably add a 'progress bar'
+// 			
+// 			
+			// _fillModalUrl(data);
+// 			
+		// });
+		 $("#modal_form").css("display", "none");
+		 $(".modal_progress").css("display", "block");
 	}
 	
 	function _registerForWorkshop($object) {
@@ -260,8 +274,9 @@ var LISTENER = function() {
 			case 'modal_form':
 				// Create workshop
 				console.log("modal_form called. You want to create");
-				var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
-				console.log(data_to_send);
+				//var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name=Ezra Velazquez";
+				//var data_to_send = $object.serialize();
+				//console.log(data_to_send);
 				//console.log(fbObj.id);
 				
 				
@@ -269,7 +284,7 @@ var LISTENER = function() {
 				 * Facebook check here
 				 */
 				_facebookLoginScreen(function() {
-					_createWorkshop(data_to_send);
+					_createWorkshop($object);
 				});
 				
 /*				
