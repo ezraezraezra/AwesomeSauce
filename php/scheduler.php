@@ -1,5 +1,6 @@
 <?php
 	include('scheduler_group.php');
+	include('user_details.php');
 	
 	$quotes = array(
 				array('Like a ', 'BOSS'),
@@ -15,6 +16,7 @@
 	<div id="container_content_body">
 		<?php 
 			if($display == 'me') {
+				
 				$instructor_id = $facebook_userId;
 				
 				$group_name = 'Workshops I\'m ';
@@ -50,6 +52,13 @@
 				
 				displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id);
 			
+			}
+			
+			// Hide user info
+			//$u_id = $facebook_userId;
+			$u_id = 1088730508;
+			if($u_id != 0) {
+				implantUserDetails($u_id);
 			}
 		?>
 	</div>

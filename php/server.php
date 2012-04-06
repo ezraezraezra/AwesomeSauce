@@ -56,6 +56,27 @@
 			return $fb_id;
 		}
 		
+		function getUserDetails($u_id) {
+			$student_id = $this->getUserInternalID($u_id, 'student');
+			$instructor_id = $this->getUserInternalID($u_id, 'instructor');
+			
+			$result = array('student_id'=>$student_id,
+							'instructor_id'=>$instructor_id);
+			
+			return $result;
+		}
+		
+		function getUserInternalID($u_id, $table){
+			$request = "SELECT id FROM $table WHERE fb_id='$u_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			foreach ($rows as $row):
+				$student_id = "{$row['id']}";
+			endforeach;	
+				
+			return $student_id;
+		}
+		
 		function getClassroom($u_id,$u_type,$w_id) {
 			// Get FB_ID	
 			$fb_id = $this->getFBid($u_id);
