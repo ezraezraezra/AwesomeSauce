@@ -55,8 +55,8 @@
 			}
 			
 			// Hide user info
-			//$u_id = $facebook_userId;
-			$u_id = 1088730508;
+			$u_id = $facebook_userId;
+			//$u_id = 1088730508;
 			if($u_id != 0) {
 				implantUserDetails($u_id);
 			}

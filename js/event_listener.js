@@ -170,11 +170,46 @@ var LISTENER = function() {
 			$(".modal_instructor_name").text($object.children(":nth-child(2)").children(":nth-child(2)").text());
 			$(".modal_instructor_update_rating_good").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rg"));
 			$(".modal_instructor_update_rating_bad").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rb"));
+			
+			//User Classroom urls
+			_displayMyUrls($object);
 
 			
 			$modal.fadeIn();
 		}
 		
+	}
+	
+	function _displayMyUrls($object) {
+		if(fbObj.id.length != 1) {
+			if(window.location.search.indexOf("d=me") != -1) {
+				var class_type = $object.parent().parent().children(":nth-child(1)").children(":nth-child(1)").text();
+				var u_id;
+				var w_id = $object.attr("id");
+				var u_type;
+				
+				if(class_type.indexOf("Attending") == 0) {
+					u_id = $(".user_details").attr("sid");
+					u_type = "user";
+				}
+				else if(class_type.indexOf("Leading") == 0) {
+					u_id = $(".user_details").attr("iid");
+					var u_type = "admin";
+				}
+				
+				var url = window.location.origin + "" + window.location.pathname + "?d=classroom&uid="+u_id+"&type="+u_type+"&wid="+w_id;
+				console.log(url);
+				
+				var data = new Array();
+				data['url_values'] = new Array();
+				data['url_values']['u_id'] = u_id;
+				data.url_values.type = u_type;
+				data.url_values.w_id = w_id;
+				
+				_fillModalUrl(data);
+				
+			}
+		}
 	}
 	
 	function _createWorkshop($object) {
@@ -328,6 +363,7 @@ var LISTENER = function() {
 		$(".modal_url_url").val(url);
 		$(".modal_url_date").html(url_date);
 		
+		$("#modal_form").css("display", "none");
 		$(".modal_progress").css("display", "none");
 		$(".workshop_url").css("display", "block");
 		

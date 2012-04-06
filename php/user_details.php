@@ -11,6 +11,12 @@
 		 */
 		$internal_ids = $server->getUserDetails($u_id);
 		
+		foreach( $internal_ids as $key => $value){
+			if($value == "") {
+				$internal_ids[$key] = 0;
+			}
+		}
+		
 		$result = '<div class="hidden_info user_details" sid="'.$internal_ids['student_id'].'" iid="'.$internal_ids['instructor_id'].'"></div>';
 		
 		//$return = displayPage($results);

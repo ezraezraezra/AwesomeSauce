@@ -203,7 +203,7 @@
 				
 				// Attending
 				if(!strcasecmp($query, 'attend')) {
-					$request_query = " AND s.id = wXs.student_id AND s.fb_id = '".$instructor_id."' AND w.date > '".$mysqldate."'";
+					$request_query = " AND s.id = wXs.student_id AND s.fb_id = '".$instructor_id."' AND w.id = wXs.workshop_id AND w.date > '".$mysqldate."'";
 				}
 				// Teaching
 				else {
