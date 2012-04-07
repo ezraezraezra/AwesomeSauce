@@ -28,8 +28,8 @@
 					<span class="instructor_name classroom_labels">Instructor</span>
 					<div class="video_feed_instructor" id="video_feed_instructor"></div>
 					<div class="instructor_button_container">
-						<div class="instructor_rate_button instructor_good_img button">75%</div>
-						<div class="instructor_rate_button instructor_bad_img button">25%</div>
+						<div class="instructor_rating instructor_good_img button">12</div>
+						<div class="instructor_rate_button button">award point</div>
 					</div>
 				</div>
 				<div class="students_container">
