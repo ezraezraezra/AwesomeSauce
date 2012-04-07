@@ -76,6 +76,29 @@
 				
 			return $student_id;
 		}
+
+		function updateInstructorRating($w_id) {
+			$request = "UPDATE instructor, workshop_X_instructor, workshop
+SET instructor.rating_good=instructor.rating_good+1
+WHERE workshop.id = workshop_X_instructor.workshop_id AND instructor.id = workshop_X_instructor.instructor_id AND workshop.id = '$w_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			
+			return '200';
+		}
+		
+		function getInstructorRating($w_id) {
+			$request = "SELECT i.rating_good 
+FROM instructor AS i, workshop AS w, workshop_X_instructor AS wXi 
+WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id AND w.id = '$w_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			foreach ($rows as $row):
+				$rating = "{$row['rating_good']}";
+			endforeach;	
+					
+				return $rating;
+		}
 		
 		function getClassroom($u_id,$u_type,$w_id) {
 			// Get FB_ID	

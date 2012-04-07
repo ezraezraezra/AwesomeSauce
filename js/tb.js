@@ -225,6 +225,23 @@ var OpenTok = function() {
 			console.log("OpenTok.init called");
 			_setUniqueVideoKeys();
 
+			if(values['type'] == 'admin') {
+				$(".instructor_rate_button").css("display", "none");
+				$(".instructor_rating").css({
+					marginLeft  : "auto",
+					marginRight : "auto",
+					"float"     : "none"
+				});
+			}
+			$(".instructor_rate_button").attr("wid", values['wid']);
+			$.get('../php/server_ajax.php', {
+				"o"   : "instructor",
+				"a"   : "pull",
+				"wid" : values['wid']
+			}, function(data) {
+				$(".instructor_rating").html(data.result);
+			});		
+
 			$.get('../php/server_ajax.php', {
 				"o" : "classroom",
 				"uid" : values['uid'],

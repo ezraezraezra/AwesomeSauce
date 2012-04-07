@@ -19,7 +19,7 @@
 <div id="container_content" class="container_bodies">
 	<div class="container_content_header container_classroom_header">
 		<div class="container_content_header_logo"> </div>
-		<span class="container_classroom_header_title">WORKSHOP TITLE GOES HERE</span>
+		<span class="container_classroom_header_title"></span>
 		<div class="container_clear"></div>
 </div>
 <div class="classroom_container">
@@ -28,7 +28,7 @@
 					<span class="instructor_name classroom_labels">Instructor</span>
 					<div class="video_feed_instructor" id="video_feed_instructor"></div>
 					<div class="instructor_button_container">
-						<div class="instructor_rating instructor_good_img button">12</div>
+						<div class="instructor_rating instructor_good_img button"></div>
 						<div class="instructor_rate_button button">award point</div>
 					</div>
 				</div>

@@ -50,6 +50,19 @@
         	//$response = $opentok->generateSession()
         	
 			break;
+		case 'instructor':
+			$w_id = $_GET['wid'];
+			
+			if($_GET['a'] == 'push') {
+				$result = $server->updateInstructorRating($w_id);
+			}
+			else {
+				$result = $server->getInstructorRating($w_id);
+			}
+			
+			$response = array('status'=>'200','result'=>$result);
+			
+			break;
 		default:
 			$response = array('status'=>'400','message'=>'command not known');
 			break;

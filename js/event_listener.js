@@ -309,10 +309,32 @@ var LISTENER = function() {
 			case 'Login with Facebook':
 				console.log("login called");
 				_facebookLoginButton();
+				break;
+			case 'award point':
+				console.log("award point called");
+				_awardPoint($object);
+				
+				
+				break;
 			default:
 				log($.trim($object.text()));
 				break;	
 		}
+	}
+	
+	function _awardPoint($object) {
+		var value = parseInt($(".instructor_rating").text(), 10);
+		$(".instructor_rating").text(value + 1);
+		$object.fadeOut('600');
+		
+		var w_id = $object.attr("wid");
+		$.get('../php/server_ajax.php', {
+			o   : 'instructor',
+			a   : 'push',
+			wid : w_id
+		}, function(data) {
+			console.log(data);
+		});
 	}
 	
 	function _formListener(e, $object) {
