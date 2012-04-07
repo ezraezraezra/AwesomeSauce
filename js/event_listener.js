@@ -142,6 +142,21 @@ var LISTENER = function() {
 				// $(".modal_button_bottom.modal_learn.button").css("display", "block");
 			// }
 // 			
+			// Only display 'register' if user is not teaching or leading the workshop
+			var display_bottom = true;
+			$(".user_details_wids").children().each(function() {
+				if($(this).text() == $object.attr("id")) {
+					display_bottom = false;
+				}
+			});
+			
+			if(display_bottom == false) {
+				$(".modal_bottom").css("display", "none");
+			}
+			else {
+				$(".modal_bottom").css("display", "block");
+			}
+
 			//Workshop id
 			log($object.attr("id"));
 			$(".modal_button_bottom.modal_learn.button").attr("wid", $object.attr("id"));

@@ -206,8 +206,12 @@
 					$request_query = " AND s.id = wXs.student_id AND s.fb_id = '".$instructor_id."' AND w.id = wXs.workshop_id AND w.date > '".$mysqldate."'";
 				}
 				// Teaching
-				else {
+				else if(!strcasecmp($query, 'teach')) {
 					$request_query = " AND i.fb_id='".$instructor_id."' AND w.date > '".$mysqldate."'";
+				}
+				// Attending & Teaching
+				else if(!strcasecmp($query, 'both')) {
+					$request_query = " AND ((s.id = wXs.student_id AND s.fb_id = '".$instructor_id."' AND w.id = wXs.workshop_id) OR i.fb_id='".$instructor_id."') AND w.date > '".$mysqldate."'";
 				}
 			}
 /*

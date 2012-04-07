@@ -17,7 +17,14 @@
 			}
 		}
 		
-		$result = '<div class="hidden_info user_details" sid="'.$internal_ids['student_id'].'" iid="'.$internal_ids['instructor_id'].'"></div>';
+		$workshop_ids = $server->getWorkshop('personal', 'both', $u_id);
+		$w_ids = '<ul class="user_details_wids">';
+		for($x = 0; $x < count($workshop_ids); $x++) {
+			$w_ids.='<li>'.$workshop_ids[$x]['id'].'</li>';
+		}
+		$w_ids.='</ul>';
+		
+		$result = '<div class="hidden_info user_details" sid="'.$internal_ids['student_id'].'" iid="'.$internal_ids['instructor_id'].'">'.$w_ids.'</div>';
 		
 		//$return = displayPage($results);
 		$server->closeApp();
