@@ -59,10 +59,9 @@
 						<div class="modal_instructor_name"></div>
 					</div>
 					<div class="modal_instructor_update_rating">
-						<img class="modal_instructor_update_img" src="../assets/img/rating_good.png">
-						<div class="modal_instructor_update_rating_good"></div>
-						<img class="modal_instructor_update_img" src="../assets/img/rating_bad.png">
-						<div class="modal_instructor_update_rating_bad"></div>
+						<span class="modal_instructor_update_rating_good"></span>
+						<div class="modal_instructor_update_img"></div>
+						
 					</div>
 					
 					<div class="container_clear"></div>

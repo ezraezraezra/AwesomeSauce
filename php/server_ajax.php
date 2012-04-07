@@ -46,6 +46,8 @@
 			
 			$opentok = new OpenTok();
 			$response = $opentok->generate($facebook_name,$u_type, $server_response['w_name'], $server_response['s_id']);
+        	//$response = array('w_name'=>$server_response['w_name'], 's_id'=>$server_response['s_id']);
+        	//$response = $opentok->generateSession()
         	
 			break;
 		default:

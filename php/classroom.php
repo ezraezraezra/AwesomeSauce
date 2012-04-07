@@ -17,6 +17,11 @@
 </script>
 
 <div id="container_content" class="container_bodies">
+	<div class="container_content_header container_classroom_header">
+		<div class="container_content_header_logo"> </div>
+		<span class="container_classroom_header_title">WORKSHOP TITLE GOES HERE</span>
+		<div class="container_clear"></div>
+</div>
 <div class="classroom_container">
 			<div class="classroom_left_container classroom_inner_container">
 				<div class="instructor_container">

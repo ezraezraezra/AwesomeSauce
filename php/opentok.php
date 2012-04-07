@@ -26,11 +26,13 @@
 			// Get username from the FB server?
 			$metadata =  '{"name": "'.$name.'", "u_type": "'.$u_type.'", "w_name": "'.$w_name.'"}';
 			$token_user = $apiObj->generate_token($s_id, $role, NULL, $metadata); // Replace with the correct session ID
+			
+			//$token_user = $apiObj->generate_token();
 			//$token_user = $apiObj->generate_token($session->getSessionId(), $role, NULL, $metadata); // Replace with the correct session ID
 			//$session_id = $session->getSessionId();
 					
 			//$arr = array('session'=>$session_id, 'token'=>$token_user);
-			$arr = array('session'=>$s_id, 'token'=>$token_user);
+			$arr = array('session'=>$s_id, 'token'=>$token_user, 'w_name'=>$w_name);
 			return $arr;
 		}
 	}

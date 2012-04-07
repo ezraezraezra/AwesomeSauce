@@ -26,12 +26,15 @@
 		<?php printFacebokHTML(); ?>
 		<div id="container_main">
 			<?php
+			/*
 				if($display == 'classroom') {
 					include("../php/header");
 				}
 				else {
+			 * 
+			 */
 					include("../php/modal.php");
-				}
+			//	}
 			?>
 			<div id="container_middle">
 				<?php

@@ -31,7 +31,12 @@ var OpenTok = function() {
 	function connect() {
 		//console.log(token);
 		//console.log(sessionId);
+		
+		console.log(apiKey);
+		console.log(token);
+		console.log(sessionId);
 		session.connect(apiKey, token);
+		console.log("connect called");
 	}
 
 	function disconnect() {
@@ -40,13 +45,14 @@ var OpenTok = function() {
 
 	// Called when user wants to start publishing to the session
 	function startPublishing() {
+		console.log('start publishing');
 		
 		var subscriberProprs;
 		if (!publisher) {
 			if(values['type'] == 'admin') {
 				video_feed = "video_feed_instructor";
-				subscriberProps = {width: 300, 
-                                            height: 250, 
+				subscriberProps = {width: 340, 
+                                            height: 270, 
                                             subscribeToAudio: true};
 			}
 			else {
@@ -78,6 +84,7 @@ var OpenTok = function() {
 	//  OPENTOK EVENT HANDLERS
 	//--------------------------------------
 	function sessionConnectedHandler(event) {
+		console.log("sessionConnected handler");
 		startPublishing();
 		
 		// Subscribe to all streams currently in the Session
@@ -137,7 +144,7 @@ var OpenTok = function() {
 			//$obj = $("video_feed_instructor");
 			video_feed = "video_feed_instructor";
 			label_set = true;
-			subscriberProps = {width: 300, height: 250, subscribeToAudio: true};
+			subscriberProps = {width: 340, height: 270, subscribeToAudio: true};
 		}
 		else {
 			//console.log("need to put a label on someone, this one: "+connection_data['name']);
@@ -215,6 +222,7 @@ var OpenTok = function() {
 	
 	return {
 		init : function() {
+			console.log("OpenTok.init called");
 			_setUniqueVideoKeys();
 
 			$.get('../php/server_ajax.php', {
@@ -223,6 +231,11 @@ var OpenTok = function() {
 				"type" : values['type'],
 				"wid" : values['wid'],	
 			}, function(data) {
+				console.log("data return from server_ajax");
+				console.log(data);
+				
+				$(".container_classroom_header_title").html(data.w_name);
+				
 				//console.log(data);
 				//sessionId = data.session[0];
 				sessionId = data.session;
@@ -232,6 +245,8 @@ var OpenTok = function() {
 					alert("You don't have the minimum requirements to run this application."
 						  + "Please upgrade to the latest version of Flash.");
 				} else {
+					console.log("about to create session");
+					//session = TB.initSession('1_MX4wfn4yMDEyLTA0LTA3IDE5OjU1OjU3LjA4NDAxOSswMDowMH4wLjgwODg5NTk2MzU5Nn4');
 					session = TB.initSession(sessionId);	// Initialize session
 			
 					// Add event listeners to the session
@@ -246,5 +261,6 @@ var OpenTok = function() {
 				}
 			});
 		}
+		
 	}
 }();

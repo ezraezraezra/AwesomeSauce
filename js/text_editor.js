@@ -36,7 +36,7 @@ var TextEditor = function() {
 									 'noColors'         : false,
 									 'hideQRCode'       : true,
 									 'width'            : 460,
-									 'height'           : 310,
+									 'height'           : 330,
 									 'border'           : 0,
 									 'borderStyle'      : 'solid'
 									}

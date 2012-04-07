@@ -47,7 +47,7 @@
 	}
 	
 	
-	if(isset($_GET['token'])) {
+	if(isset($_GET['message'])) {
 		facebookPost($_GET['token'], $_GET['id'], $_GET['message'], $facebook);
 	}
 	

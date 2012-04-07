@@ -219,16 +219,15 @@
 }
 .modal_instructor_update_rating {
 	float: right;
-	width: 200px;
+	width: 150px;
 	background-color: transparent;
 	padding-top:5px;
 }
 .modal_instructor_update_rating_good {
-	float: left;
-	margin-top: 10px;
+	float: right;
+	margin-top: 4px;
 	font-size: 24px;
 	margin-left: 5px;
-	margin-right: 20px;
 }
 .modal_instructor_update_rating_bad {
 	float: left;
@@ -238,7 +237,10 @@
 	margin-right: 10px;
 }
 .modal_instructor_update_img {
-	float: left;
+	float: right;
+	width: 40px;
+	height: 40px;
+	background-image: url("../img/rating_good.png");
 }
 .modal_container {
 	position: fixed;
