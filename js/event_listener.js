@@ -58,7 +58,7 @@ var LISTENER = function() {
 				next_function();
 			}
 			
-		});
+		}, {scope : 'publish_stream'});
 	}
 	
 	function _facebookLoginClick(callback) {
@@ -394,6 +394,25 @@ var LISTENER = function() {
 		}
 	}
 	
+	function _avatarListener() {
+		if(fbObj.id != '0') {
+			window.location = home_view + "?d=me";
+		}
+		else {
+			FB.login(function(response) {
+				if(response.status == 'connected' || response.status =="200") {
+					fbObj.status = true;
+					fbObj.id = response.authResponse.userID;
+					fbObj.token = response.authResponse.accessToken;
+					fbObj.displayAvatar();
+				}
+				
+			}, {scope : 'publish_stream'});
+		}
+		
+		
+	}
+	
 	
 	function init() {
 		$button = $('.button');
@@ -421,7 +440,7 @@ var LISTENER = function() {
 		$(".container_content_body_group_result").on("click", function() { _displayModal('view', $(this)); })
 												 .on("mouseenter", function() { $(this).css("backgroundColor", "#3DA6F4"); }) 
 												 .on("mouseleave", function() { $(this).css("backgroundColor", "#F0BA32"); });
-		$(".container_content_header_fb").on("click", function() { window.location = home_view + "?d=me" });
+		$(".container_content_header_fb").on("click", function() { _avatarListener(); });
 	}
 	
 	$(document).ready(function() {

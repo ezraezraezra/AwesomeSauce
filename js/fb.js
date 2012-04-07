@@ -16,13 +16,30 @@ var fbObj =  {
 	token : '',
 	displayAvatar : function() {
 		console.log(this.id);
+		var image_url;
+		
+		if(this.id != '0') {
+			image_url = "https://graph.facebook.com/"+ this.id +"/picture?type=normal";
+		}
+		else {
+			image_url = "../assets/img/user_50.png";
+		}
 		$(".container_content_header_fb").css( {
-													backgroundImage : "url('https://graph.facebook.com/"+ this.id +"/picture?type=normal')",
+													backgroundImage : "url("+ image_url +")",
 													display : 'block'
 												});
+		
 	}
 }
-
+	
+function postToWall() {
+	$.get('../php/fb_post.php', {
+		token: fbObj.token,
+		id: fbObj.id
+	}, function(data) {
+		console.log(data);
+	});
+}	
 	
     window.fbAsyncInit = function() {
       FB.init({
@@ -33,6 +50,8 @@ var fbObj =  {
         oauth      : true,
       });
       
+      
+      
       /*
        * Modified from
        * http://facebook.stackoverflow.com/questions/3548493/how-to-detect-when-facebooks-fb-init-is-complete
@@ -42,6 +61,7 @@ var fbObj =  {
       	console.log(response.status);
       	if(response.status != 'connected') {
       		fbObj.status = false;
+      		fbObj.displayAvatar();
       	}
       	else {
       		fbLoginStatus = true;
