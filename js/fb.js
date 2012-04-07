@@ -29,17 +29,25 @@ var fbObj =  {
 													display : 'block'
 												});
 		
+	},
+	postToWall : function(user_type, title, date) {
+		 var message;
+		 if(user_type == 'admin') {
+			 message = "Giving an online workshop about "+ title +" on "+ date +".";
+		 }
+		 else if(user_type == 'user') {
+		 	message = "Going to an online workshop about "+title+" on "+ date +".";
+		 }
+		$.get('../php/fbook.php', {
+			token: this.token,
+			id: this.id,
+			message : message
+		}, function(data) {
+			console.log(data);
+		});
 	}
 }
-	
-function postToWall() {
-	$.get('../php/fb_post.php', {
-		token: fbObj.token,
-		id: fbObj.id
-	}, function(data) {
-		console.log(data);
-	});
-}	
+
 	
     window.fbAsyncInit = function() {
       FB.init({

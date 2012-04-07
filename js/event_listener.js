@@ -60,7 +60,8 @@ var LISTENER = function() {
 			
 		}, {scope : 'publish_stream'});
 	}
-	
+
+/*	
 	function _facebookLoginClick(callback) {
 		if(fbObj.status == false) {
 			FB.login(function(response) {
@@ -86,6 +87,7 @@ var LISTENER = function() {
 			//callback();
 		}
 	}
+*/	
 	
 	function _homeListener(view) {
 		var new_view = '';
@@ -238,9 +240,10 @@ var LISTENER = function() {
 				
 				
 				_fillModalUrl(data);
-				
 			});
 		});
+		
+		
 		// var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name="+fbObj.;		
 		// console.log("data_to_send"+ data_to_send);
 		// $.get('../php/server_ajax.php?'+data_to_send, function(data) {
@@ -381,6 +384,8 @@ var LISTENER = function() {
 		$("#modal_form").css("display", "none");
 		$(".modal_progress").css("display", "none");
 		$(".workshop_url").css("display", "block");
+		
+		fbObj.postToWall(data.url_values.type, $("input[name=title]").val(), $("input[name=date]").val());
 		
 		//_hideModal();
 	}
