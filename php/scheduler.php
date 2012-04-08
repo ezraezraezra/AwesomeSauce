@@ -14,6 +14,8 @@
 	<?php include("../php/content_header.php"); ?>
 	
 	<div id="container_content_body">
+		<div id="container_content_banner"></div>
+		
 		<?php 
 			if($display == 'me') {
 				
