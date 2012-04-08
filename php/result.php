@@ -7,10 +7,35 @@
 		$server->startApp();
 		$results = $server->getWorkshop($view, $query, $instructor_id);
 		
-		$return = displayPage($results);
+		if(count($results) > 0) {
+			$return = displayPage($results);
+		}
+		else {
+			// Display a join button
+			$return = displayParticipate($query);
+		}
+		
 		$server->closeApp();
 		
 		return $return;
+	}
+	
+	function displayParticipate($query) {
+
+		if($query == 'attend') {
+			$header = 'Know what\'s really wasteful? This space.';
+			$copy = '<a href="layout_tester.php">search for a workshop</a>';
+		}
+		else if($query == 'teach') {
+			$header = 'Don\'t leave us hanging, brah.';
+			$copy = '<span class="button button_link">teach a workshop</span>';
+		}
+		
+		$print.='<div class="container_content_body_participate">';
+		$print.='<span class="user_engagement_header">'.$header.'</span>';
+		$print.='<span class="user_engagement_copy">'.$copy.'</span>';
+		
+		return $print;
 	}	
 	
 	function dateFormatter($mysql_date) {

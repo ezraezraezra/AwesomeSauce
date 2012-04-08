@@ -17,6 +17,9 @@
 				On <span class="modal_url_date"></span> go to this URL to participate in the workshop:
 			</div>
 			<textarea class="modal_url_url" readonly="readonly"></textarea>
+			<div class="modal_url_info_bottom">
+				Remember, this is <span class="modal_url_info_bottom_highlight"> your personal</span> link. Don&rsquo;t share it with a prince.
+			</div>
 		</div>
 		<div class="modal_facebook_login">
 			<span class="modal_overall_title modal_facebook">Hold On There</span>

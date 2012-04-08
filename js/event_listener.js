@@ -313,8 +313,9 @@ var LISTENER = function() {
 			case 'award point':
 				console.log("award point called");
 				_awardPoint($object);
-				
-				
+				break;
+			case 'teach a workshop':
+				_displayModal('fill', $object);
 				break;
 			default:
 				log($.trim($object.text()));
