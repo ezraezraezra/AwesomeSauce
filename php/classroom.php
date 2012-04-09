@@ -1,11 +1,11 @@
 <?php
 ?>
 <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="../js/tb.js"></script>
-<script type="text/javascript" src="../js/lib/io/dist/socket.io.js"></script>
-<script type="text/javascript" src="../js/chat.js"></script>
-<script type="text/javascript" src="../js/lib/etherpad.js"></script>
-<script type="text/javascript" src="../js/text_editor.js"></script>
+<script type="text/javascript" src="js/tb.js"></script>
+<script type="text/javascript" src="js/lib/io/dist/socket.io.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
+<script type="text/javascript" src="js/lib/etherpad.js"></script>
+<script type="text/javascript" src="js/text_editor.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -13,9 +13,9 @@
 
 var LISTENER = function() {
 	var DEBUG = true;
-	var teach_view = 'layout_tester.php?d=teach';
-	var learn_view = 'layout_tester.php?d=learn';
-	var home_view = 'layout_tester.php';
+	var teach_view = 'index.php?d=teach';
+	var learn_view = 'index.php?d=learn';
+	var home_view = 'index.php';
 	
 	var $button = '';
 	var $modal = '';
@@ -234,12 +234,13 @@ var LISTENER = function() {
 			console.log(data);
 			var data_to_send = $object.serialize()+"&fb_id="+fbObj.id+"&o=register&name="+data.name;		
 			console.log("data_to_send"+ data_to_send);
-			$.get('../php/server_ajax.php?'+data_to_send, function(data) {
+			$.get('php/server_ajax.php?'+data_to_send, function(data) {
 				console.log(data);
 				// Should probably add a 'progress bar'
 				
 				
 				_fillModalUrl(data);
+				fbObj.postToWall('admin', $("input[name=title]").val(), $("input[name=date]").val());
 			});
 		});
 		
@@ -259,7 +260,7 @@ var LISTENER = function() {
 	}
 	
 	function _registerForWorkshop($object) {
-		$.get('../php/server_ajax.php', {
+		$.get('php/server_ajax.php', {
 			"o" : "add",
 			"fb_id" : fbObj.id,
 			"w_id" : $object.attr("wid")	
@@ -268,6 +269,7 @@ var LISTENER = function() {
 			// Should probably add a 'progress bar'
 			
 			_fillModalUrl(data);
+			fbObj.postToWall('user', $("input[name=title]").val(), $("input[name=date]").val());
 			//_hideModal();
 		});
 		$("#modal_form").css("display", "none");
@@ -287,6 +289,7 @@ var LISTENER = function() {
 		$(".modal_facebook_login").css("display", "none");
 		$(".workshop_url").css("display", "none");
 		$("#modal_form").css("display", "block");
+		$(".modal_bottom").css("display", "block");
 	}
 	
 	function _buttonListener($object) {
@@ -329,7 +332,7 @@ var LISTENER = function() {
 		$object.fadeOut('600');
 		
 		var w_id = $object.attr("wid");
-		$.get('../php/server_ajax.php', {
+		$.get('php/server_ajax.php', {
 			o   : 'instructor',
 			a   : 'push',
 			wid : w_id
@@ -407,8 +410,6 @@ var LISTENER = function() {
 		$("#modal_form").css("display", "none");
 		$(".modal_progress").css("display", "none");
 		$(".workshop_url").css("display", "block");
-		
-		fbObj.postToWall(data.url_values.type, $("input[name=title]").val(), $("input[name=date]").val());
 		
 		//_hideModal();
 	}

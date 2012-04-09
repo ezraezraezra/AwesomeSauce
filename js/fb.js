@@ -22,7 +22,7 @@ var fbObj =  {
 			image_url = "https://graph.facebook.com/"+ this.id +"/picture?type=normal";
 		}
 		else {
-			image_url = "../assets/img/user_50.png";
+			image_url = "assets/img/user_50.png";
 		}
 		$(".container_content_header_fb").css( {
 													backgroundImage : "url("+ image_url +")",
@@ -38,7 +38,7 @@ var fbObj =  {
 		 else if(user_type == 'user') {
 		 	message = "Going to an online workshop about "+title+" on "+ date +".";
 		 }
-		$.get('../php/fbook.php', {
+		$.get('php/fbook.php', {
 			token: this.token,
 			id: this.id,
 			message : message

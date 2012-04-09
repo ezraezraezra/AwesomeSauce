@@ -27,6 +27,7 @@
 	width: 900px;
 	height: 184px;
 	background-image: url('../img/hero_banner.png');
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	margin-top: -20px;
 	cursor: pointer;
 }

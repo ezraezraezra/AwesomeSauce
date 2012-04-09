@@ -234,7 +234,7 @@ var OpenTok = function() {
 				});
 			}
 			$(".instructor_rate_button").attr("wid", values['wid']);
-			$.get('../php/server_ajax.php', {
+			$.get('php/server_ajax.php', {
 				"o"   : "instructor",
 				"a"   : "pull",
 				"wid" : values['wid']
@@ -242,7 +242,7 @@ var OpenTok = function() {
 				$(".instructor_rating").html(data.result);
 			});		
 
-			$.get('../php/server_ajax.php', {
+			$.get('php/server_ajax.php', {
 				"o" : "classroom",
 				"uid" : values['uid'],
 				"type" : values['type'],
