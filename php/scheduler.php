@@ -11,7 +11,7 @@
 ?>
 <div id="container_content" class="container_bodies">
 
-	<?php include("../php/content_header.php"); ?>
+	<?php include("php/content_header.php"); ?>
 	
 	<div id="container_content_body">
 		<div id="container_content_banner"></div>

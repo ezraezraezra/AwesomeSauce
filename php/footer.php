@@ -6,8 +6,6 @@
 			<ul>
 				<li>about</li>
 				<li>|</li>
-				<li>technology</li>
-				<li>|</li>
 				<li>contact</li>
 				<li>|</li>
 				<li><a href="http://ezraezraezra.com" target="_blank">&copy; 2012 Ezra Velazquez</a></li>

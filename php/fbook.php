@@ -11,19 +11,11 @@
 	));
 	
 	$facebook_userId = $facebook->getUser();
-	
-				// if($facebook_userId) {
-	//$facebook_userInfo = $facebook->api('/' + $facebook_userId);
-	      		// echo $userInfo['name'];
-			// }
-			// else {
-				// echo 'facebook id not set';
-			// }
 			
 	function printFacebokHTML() {
 		$print = '';
 		$print.='<div id="fb-root"></div>
-				<script type="text/javascript" src="../js/fb.js">
+				<script type="text/javascript" src="js/fb.js">
 				</script><div class="fb-login-button" data-scope="publish_stream" style="display:none;">Login with Facebook</div>';
 		
 		echo $print;		
