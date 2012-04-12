@@ -7,7 +7,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>AwsmSauce</title>
+		<title>AwsmSauce | Share a Skill ~ Learn a Few</title>
+		<!--
+  ___                          _____                       
+ / _ \                        /  ___|                      
+/ /_\ \__      _____ _ __ ___ \ `--.  __ _ _   _  ___  ___ 
+|  _  |\ \ /\ / / __| '_ ` _ \ `--. \/ _` | | | |/ __|/ _ \
+| | | | \ V  V /\__ \ | | | | /\__/ / (_| | |_| | (__|  __/
+\_| |_/  \_/\_/ |___/_| |_| |_\____/ \__,_|\__,_|\___|\___|
+		-->
 		<link rel="stylesheet" type="text/css" href="assets/css/overall.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/index.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/scheduler.css" />
