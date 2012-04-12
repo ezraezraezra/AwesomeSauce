@@ -27,11 +27,11 @@
 		$attachment = array(
 			'access_token' => $token,
 			'message'      => $message,
-			'name'         => 'AwesomeSauce',
+			'name'         => 'AwsmSauce',
 			'caption'      => 'Share a Skill ~ Learn a Few',
-			'link'         => 'http://ezraezraezra.com',
+			'link'         => 'http://awsmsauce.org',
 			'description'  => 'Online face-to-face workshops for the developer community',
-			'picture'      => 'http://ezraezraezra.com/thesis/assets/img/fb_post.png'
+			'picture'      => 'http://awsmsauce.org/assets/img/fb_post.png'
 		); 	
 		 $facebook->api('/'.$u_id.'/feed', 'POST', $attachment);
 		 

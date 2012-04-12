@@ -12,6 +12,8 @@
  * Note:        Original basic functionality code by: TokBox
  * 
  */
+var test;
+
 var OpenTok = function() {
 	var apiKey = 13249262; // OpenTok sample API key. Replace with your own API key.
 	var sessionId = '153975e9d3ecce1d11baddd2c9d8d3c9d147df18'; // Replace with your session ID.
@@ -139,7 +141,7 @@ var OpenTok = function() {
 		connection_data = getConnectionData(stream['connection']);
 		//console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
-			$(".instructor_name.classroom_labels").html(connection_data['name'] + " - Instructor");
+			$(".instructor_name.classroom_labels").html(connection_data['name'].replace("+", " ") + " - Instructor");
 			// create the video thing here
 			//$obj = $("video_feed_instructor");
 			video_feed = "video_feed_instructor";
@@ -154,12 +156,12 @@ var OpenTok = function() {
 		
 		// Check if this is the stream that I am publishing, and if so do not publish.
 		if (stream.connection.connectionId == session.connection.connectionId) {
-			Chat.setName(connection_data['name']);
+			Chat.setName(connection_data['name'].replace("+", " "));
 			if(label_set == false) {
 				//console.log("HIERE");
 				//console.log(video_feed);
 				//$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
-				$("#user_me").parent().children(":first").html(connection_data['name']);
+				$("#user_me").parent().children(":first").html(connection_data['name'].replace("+", " "));
 			}
 			return;
 		}
@@ -167,7 +169,7 @@ var OpenTok = function() {
 		if(label_set == false) {	
 			//console.log("sending this name to be created: "+connection_data['name']);
 			//console.log("this is the student_counter: "+student_counter);
-			insertStudent(connection_data['name'], student_counter);
+			insertStudent(connection_data['name'].replace("+", " "), student_counter);
 			
 			subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
 		}
@@ -188,10 +190,14 @@ var OpenTok = function() {
 	}
 	
 	function getConnectionData(connection) {
+		//console.log(connection);
+		var data = connection.data;
 	    try {
-	        connectionData = JSON.parse(connection.data);
+	        connectionData = JSON.parse(decodeURIComponent(data));
+	        //connectionData = JSON.parse(data);
 	    } catch(error) {
-	        connectionData = eval("(" + connection.data + ")" );
+	        connectionData = eval("(" + decodeURIComponent(data) + ")" );
+	        //connectionData = eval("(" + data + ")" );
 	    }
 	    return connectionData;
 	}

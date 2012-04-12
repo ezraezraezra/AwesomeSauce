@@ -24,7 +24,7 @@
 			
 			$role = RoleConstants::PUBLISHER; // Or set to the correct role for the user.
 			// Get username from the FB server?
-			$metadata =  '{"name": "'.$name.'", "u_type": "'.$u_type.'", "w_name": "'.$w_name.'"}';
+			$metadata =  '{"name":"'.$name.'","u_type":"'.$u_type.'","w_name":"'.$w_name.'"}';
 			$token_user = $apiObj->generate_token($s_id, $role, NULL, $metadata); // Replace with the correct session ID
 			
 			//$token_user = $apiObj->generate_token();
@@ -32,7 +32,7 @@
 			//$session_id = $session->getSessionId();
 					
 			//$arr = array('session'=>$session_id, 'token'=>$token_user);
-			$arr = array('session'=>$s_id, 'token'=>$token_user, 'w_name'=>$w_name);
+			$arr = array('session'=>$s_id,'w_name'=>$w_name,'token'=>$token_user);
 			return $arr;
 		}
 	}
