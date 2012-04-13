@@ -116,6 +116,7 @@
 			$print.='<span class="hidden_info workshop_description">'.$results[$i]['description'].'</span>';
 			$print.='<span class="hidden_info workshop_date">'.dateFormatter($results[$i]['date']).'</span>'; // Hidden from user
 			$print.='<span class="hidden_info workshop_time">'.timeFormatter($results[$i]['date']).'</span>'; // Hidden from user
+			$print.='<span class="hidden_info workshop_attending">'.$results[$i]['attending'].'</span>'; // Hidden from user
 			$print.='</div>';
 			$print.='</div>';
 		}

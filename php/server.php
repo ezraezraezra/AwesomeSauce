@@ -194,6 +194,20 @@ WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id AND w.id = '$w_id'";
 			
 		}
 		
+		function amountAttending($w_id) {
+			$request = "SELECT COUNT(s.fb_id) AS attending FROM student AS s, workshop_X_student AS wXs, workshop AS w WHERE wXs.workshop_id = w.id AND wXs.student_id = s.id AND w.id = '$w_id'";
+			$request = $this->submit_info($request, $this->connection, true);
+			$attending_count = 0;
+			
+			while(($rows[] = mysql_fetch_assoc($request)) || array_pop($rows));
+			//Check to see if in DB
+			foreach ($rows as $row):
+				$attending_count =  "{$row['attending']}";
+			endforeach;
+			
+			return $attending_count;
+		}
+		
 		function generateURL($u_id, $type, $w_id) {
 			$arr = array('u_id'=>$u_id,'type'=>$type,'w_id'=>$w_id);
 			
@@ -262,6 +276,7 @@ WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id AND w.id = '$w_id'";
 			$workshop = array();
 			
 			foreach ($rows as $row):
+				$attending_amount = $this->amountAttending("{$row['workshop_id']}");
 				$workshop[] = array("id"=>"{$row['workshop_id']}", 
 									"date"=>"{$row['date']}", 
 									"title"=>"{$row['title']}", 
@@ -272,12 +287,14 @@ WHERE w.id = wXi.workshop_id AND i.id = wXi.instructor_id AND w.id = '$w_id'";
 														 "fb_id"=>"{$row['fb_id']}",
 														 "rating_good"=>"{$row['rating_good']}",
 														 "rating_bad"=>"{$row['rating_bad']}"
-														)
+														),
+									"attending"=>$attending_amount
 									);
 			endforeach;
 			
 			return $workshop;
 		}
+		
 	}
 	
 //	$operation = $_GET['o'];
