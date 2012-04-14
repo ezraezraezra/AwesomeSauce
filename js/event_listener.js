@@ -120,6 +120,7 @@ var LISTENER = function() {
 			$(".modal form :input").removeAttr('readonly');
 			$(".modal form :input[name=date]").attr('readonly', true);
 			$(".intructor_field").css("display", "none");
+			$(".participants_field").css("display", "none");
 			
 			$modal.fadeIn();
 		}
@@ -131,6 +132,7 @@ var LISTENER = function() {
 			$(".modal_learn").css("display", "block");
 			$(".modal form :input").attr('readonly', true);
 			$(".intructor_field").css("display", "block");
+			$(".participants_field").css("display", "block");
 			
 			console.log($object);
 			
@@ -188,11 +190,46 @@ var LISTENER = function() {
 			$(".modal_instructor_update_rating_good").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rg"));
 			$(".modal_instructor_update_rating_bad").text($object.children(":nth-child(2)").children(":nth-child(2)").attr("rb"));
 			
+			//Participants
+			$(".modal_participants_info_amount").text($object.children(":nth-child(4)").children(":nth-child(4)").text());
+			//$(".m")
+			//$(".")
+			_displayRandomParticipants($object.children(":nth-child(4)").children(":nth-child(5)"));
+			
+			
 			//User Classroom urls
 			_displayMyUrls($object);
 
 			
 			$modal.fadeIn();
+		}
+		
+	}
+	
+	function _displayRandomParticipants($obj) {
+		var participants = new Array();
+		var max_display = 7;
+		var display_ids = new Array();
+		
+		$obj.children().each(function(index) {
+			var user = $(this).text();
+			participants.push(user);
+		});
+		
+		if(participants.length < max_display) {
+			max_display = participants.length;
+		}
+		
+		for(x = 0; x < max_display; x++) {
+			var random = Math.floor(Math.random() * participants.length);
+			display_ids.push(participants[random]);
+			participants.splice(random,1);
+		}
+		console.log(display_ids);
+		
+		for(x = 0; x < display_ids.length; x++) {
+			var user_img = "<div class='modal_participants_img' style='background-image: url(\"https://graph.facebook.com/"+ display_ids[x] +"/picture?type=square\");' />";
+			$(".modal_participants_img_container").append(user_img);
 		}
 		
 	}
@@ -285,6 +322,7 @@ var LISTENER = function() {
 	function _cleanModal() {
 		$(".modal form :input").val("");
 		
+		$(".modal_participants_img_container").html("");
 		$(".modal_progress").css("display", "none");
 		$(".modal_facebook_login").css("display", "none");
 		$(".workshop_url").css("display", "none");

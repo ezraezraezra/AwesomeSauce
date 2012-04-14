@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="workshop_url">
-			<span class="modal_overall_title modal_url">AwesomeSauce!</span>
+			<span class="modal_overall_title modal_url">AwsmSauce!</span>
 			<div class="modal_url_info">
 				On <span class="modal_url_date"></span> go to this URL to participate in the workshop:
 			</div>
@@ -68,6 +68,16 @@
 					</div>
 					
 					<div class="container_clear"></div>
+				</div>
+				<div class="container_clear"></div>
+			</div>
+			<div class="modal_layer_one participants_field">
+				<span class="modal_title_label">Participants</span>
+				<div class="modal_participants_info_container">
+					<span class="modal_participants_info_amount"></span> Confirmed
+					<div class="modal_participants_img_container">
+						
+					</div>
 				</div>
 				<div class="container_clear"></div>
 			</div>

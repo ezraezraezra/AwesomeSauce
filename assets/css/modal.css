@@ -9,7 +9,7 @@
 	padding-top: 10px;
 	padding-right: 40px;
 	font-family: Helvetica;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 .modal_title_label {
 	font-size: 24px;
@@ -286,6 +286,16 @@
 	background-image: url('../img/user_50.png');
 	float: left;
 }
+.modal_participants_info_container {
+	float: right;
+	width: 505px;
+	font-size: 24px;
+	line-height: 45px;
+}
+.modal_participants_info_amount {
+	font-weight: bold;
+}
+
 .modal_facebook_login {
 	display: none;
 }
@@ -298,6 +308,16 @@
 }
 .modal_login_content {
 	padding: 20px 0px;
+}
+.modal_participants_img_container {
+	float: right;
+	width: 350px;
+	background-color: green;
+}
+.modal_participants_img {
+	float: left;
+	width: 50px;
+	height: 50px;
 }
 
 .modal_progress {

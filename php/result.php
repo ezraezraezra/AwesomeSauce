@@ -84,6 +84,19 @@
 		}
 		return $tag_display;
 	}
+
+	function idFormatter($fb_ids) {
+		
+		
+		//$ids = explode(" ", $fb_ids);
+		//$id_display = $fb_ids;
+		
+		foreach($fb_ids as $key => $value) {
+			$id_display.= "<li>".$value."</li>";
+		}
+		
+		return $id_display;
+	}
 	
 	function getImage($id) {
 		//$user_img = '../assets/img/user_50.png';
@@ -116,9 +129,11 @@
 			$print.='<span class="hidden_info workshop_description">'.$results[$i]['description'].'</span>';
 			$print.='<span class="hidden_info workshop_date">'.dateFormatter($results[$i]['date']).'</span>'; // Hidden from user
 			$print.='<span class="hidden_info workshop_time">'.timeFormatter($results[$i]['date']).'</span>'; // Hidden from user
-			$print.='<span class="hidden_info workshop_attending">'.$results[$i]['attending'].'</span>'; // Hidden from user
+			$print.='<span class="hidden_info workshop_attending">'.$results[$i]['attending_amount'].'</span>'; // Hidden from user
+			$print.='<ul class="hidden_info workshop_attending_ids">'.idFormatter($results[$i]['attending_fb_ids'])./* .$results[$i]['attending_fb_ids']["0"].*/'</ul>'; // Hidden from user
 			$print.='</div>';
 			$print.='</div>';
+			
 		}
 
 		return $print;
