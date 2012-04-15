@@ -1,14 +1,14 @@
 /**********************************************************************
  * Developer:   Ezra Velazquez http://ezraezraezra.com
  * 
- * Date:        March 2012
+ * Date:        April 2012
  *
- * Title:       AwesomeSauce      URL coming soon
+ * Title:       AwsmSauce         http://awsmsauce.org
  * Description: Live telepresence micro-workshop platform
  *
  * Tech:        Etherpad Lite, Facebook API, JavaScript, jQuery, MySQL,
  *              Node.js, OpenTok API, PHP, Socket.io
- * Last Update: April 14th, 2012
+ * Last Update: April 15th, 2012
  ***********************************************************************/
  
  NOTE: *** 3rd PARTY LIBRARIES HAVE BEEN OMITTED FROM THE PUBLIC REPO ***

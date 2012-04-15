@@ -3,7 +3,7 @@
  * 
  * Project:     AwesomeSauce
  * Description: Live telepresence micro-workshop platform          
- * Website:     http://awesomesauce.opentok.com
+ * Website:     http://awsmsauce.org
  * 
  * Author:      Ezra Velazquez
  * Website:     http://ezraezraezra.com

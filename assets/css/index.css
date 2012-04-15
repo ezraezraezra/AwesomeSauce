@@ -1,7 +1,18 @@
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */
 .container_index_top_boxes {
 	position: relative;
 	width: 400px;
-	/*background-color: #838C2B;*/
 	background-color: #E0E0E0;
 	padding-bottom: 40px;
 }

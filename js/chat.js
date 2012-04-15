@@ -3,7 +3,7 @@
  * 
  * Project:     AwesomeSauce
  * Description: Live telepresence micro-workshop platform          
- * Website:     http://awesomesauce.opentok.com
+ * Website:     http://awsmsauce.org
  * 
  * Author:      Ezra Velazquez
  * Website:     http://ezraezraezra.com
@@ -18,7 +18,6 @@ var Chat = function() {
 	var wid = 0;
 	
 	function _connectToServer() {
-		//socket = io.connect('http://localhost:8010');
 		socket = io.connect('http://108.171.181.31:8011')
 		socket.on('start', function(data) {
 			// Connected

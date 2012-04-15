@@ -1,4 +1,16 @@
 <?php
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */
 ?>
 <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="js/tb.js"></script>

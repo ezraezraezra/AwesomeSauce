@@ -1,4 +1,16 @@
 <?php
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */
 	include('result.php');
 	
 	function displaySchedulerGroup($group_name, $group_name_sub, $view, $query, $instructor_id) {

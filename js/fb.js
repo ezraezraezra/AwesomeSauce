@@ -3,7 +3,7 @@
  * 
  * Project:     AwesomeSauce
  * Description: Live telepresence micro-workshop platform          
- * Website:     http://awesomesauce.opentok.com
+ * Website:     http://awsmsauce.org
  * 
  * Author:      Ezra Velazquez
  * Website:     http://ezraezraezra.com
@@ -12,7 +12,7 @@
  */
 var fbObj =  {
 	status : false,
-	id : '0',//'1088730508',
+	id : '0',
 	token : '',
 	displayAvatar : function() {
 		console.log(this.id);
@@ -43,7 +43,7 @@ var fbObj =  {
 			id: this.id,
 			message : message
 		}, function(data) {
-			console.log(data);
+			// Do nothing
 		});
 	}
 }
@@ -65,8 +65,6 @@ var fbObj =  {
        * http://facebook.stackoverflow.com/questions/3548493/how-to-detect-when-facebooks-fb-init-is-complete
        */
       FB.getLoginStatus(function(response) {
-      	console.log(response);
-      	console.log(response.status);
       	if(response.status != 'connected') {
       		fbObj.status = false;
       		fbObj.displayAvatar();
@@ -74,7 +72,6 @@ var fbObj =  {
       	else {
       		fbLoginStatus = true;
       		fbObj.status = true;
-      		console.log("in here");
       		fbObj.id = response.authResponse.userID;
       		fbObj.token = response.authResponse.accessToken;
       		fbObj.displayAvatar();

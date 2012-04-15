@@ -1,6 +1,17 @@
 <?php
     include_once('server.php');
-	
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */	
 	function implantUserDetails($u_id) {
 		$server = new Server();
 		$server->startApp();

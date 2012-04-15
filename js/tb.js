@@ -3,7 +3,7 @@
  * 
  * Project:     AwesomeSauce
  * Description: Live telepresence micro-workshop platform          
- * Website:     http://awesomesauce.opentok.com
+ * Website:     http://awsmsauce.org
  * 
  * Author:      Ezra Velazquez
  * Website:     http://ezraezraezra.com
@@ -31,14 +31,7 @@ var OpenTok = function() {
 	//  LINK CLICK HANDLERS
 	//--------------------------------------
 	function connect() {
-		//console.log(token);
-		//console.log(sessionId);
-		
-		console.log(apiKey);
-		console.log(token);
-		console.log(sessionId);
 		session.connect(apiKey, token);
-		console.log("connect called");
 	}
 
 	function disconnect() {
@@ -47,8 +40,6 @@ var OpenTok = function() {
 
 	// Called when user wants to start publishing to the session
 	function startPublishing() {
-		console.log('start publishing');
-		
 		var subscriberProprs;
 		if (!publisher) {
 			if(values['type'] == 'admin') {
@@ -58,15 +49,11 @@ var OpenTok = function() {
                                             subscribeToAudio: true};
 			}
 			else {
-				//console.log("other");
-				// a student, figure out what to do
 				insertStudent('', 'me');				
 				$("#"+video_feed).parent().css("zIndex", 100);
 				subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
 				
 			}
-			//console.log(video_feed);
-			
 			var parentDiv = document.getElementById(video_feed);
 			var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
 			publisherDiv.setAttribute('id', 'opentok_publisher');
@@ -86,7 +73,6 @@ var OpenTok = function() {
 	//  OPENTOK EVENT HANDLERS
 	//--------------------------------------
 	function sessionConnectedHandler(event) {
-		console.log("sessionConnected handler");
 		startPublishing();
 		
 		// Subscribe to all streams currently in the Session
@@ -137,20 +123,16 @@ var OpenTok = function() {
 	function addStream(stream) {
 		var label_set = false;
 		// For testing purposes, it all goes to instructor currently!
-		//console.log(stream);
 		connection_data = getConnectionData(stream['connection']);
-		//console.log(connection_data);
 		if(connection_data['u_type'] == 'admin') {
 			$(".instructor_name.classroom_labels").html(connection_data['name'].replace("+", " ") + " - Instructor");
 			// create the video thing here
-			//$obj = $("video_feed_instructor");
 			video_feed = "video_feed_instructor";
 			label_set = true;
 			subscriberProps = {width: 340, height: 270, subscribeToAudio: true};
 		}
 		else {
-			//console.log("need to put a label on someone, this one: "+connection_data['name']);
-			
+			// Do nothing
 		}
 		
 		
@@ -158,17 +140,12 @@ var OpenTok = function() {
 		if (stream.connection.connectionId == session.connection.connectionId) {
 			Chat.setName(connection_data['name'].replace("+", " "));
 			if(label_set == false) {
-				//console.log("HIERE");
-				//console.log(video_feed);
-				//$("#user_0").parent().children(":first").html("HIHIH"+connection_data['name']);
 				$("#user_me").parent().children(":first").html(connection_data['name'].replace("+", " "));
 			}
 			return;
 		}
 		
 		if(label_set == false) {	
-			//console.log("sending this name to be created: "+connection_data['name']);
-			//console.log("this is the student_counter: "+student_counter);
 			insertStudent(connection_data['name'].replace("+", " "), student_counter);
 			
 			subscriberProps = {width: 150, height: 100, subscribeToAudio: true};
@@ -190,14 +167,11 @@ var OpenTok = function() {
 	}
 	
 	function getConnectionData(connection) {
-		//console.log(connection);
 		var data = connection.data;
 	    try {
 	        connectionData = JSON.parse(decodeURIComponent(data));
-	        //connectionData = JSON.parse(data);
 	    } catch(error) {
 	        connectionData = eval("(" + decodeURIComponent(data) + ")" );
-	        //connectionData = eval("(" + data + ")" );
 	    }
 	    return connectionData;
 	}
@@ -218,17 +192,14 @@ var OpenTok = function() {
 	
 	function _setUniqueVideoKeys() {
 		search = window.location.search.substring(1).split("&");
-		//values = new Array();
 		for(var i = 0; i < search.length; i++) {
 			pairs = search[i].split("=");
 			values[pairs[0]] = pairs[1];
-			//console.log(values[pairs[0]]+ "<="+ pairs[0]);
 		}
 	}
 	
 	return {
 		init : function() {
-			console.log("OpenTok.init called");
 			_setUniqueVideoKeys();
 
 			if(values['type'] == 'admin') {
@@ -254,13 +225,8 @@ var OpenTok = function() {
 				"type" : values['type'],
 				"wid" : values['wid'],	
 			}, function(data) {
-				console.log("data return from server_ajax");
-				console.log(data);
-				
 				$(".container_classroom_header_title").html(data.w_name);
 				
-				//console.log(data);
-				//sessionId = data.session[0];
 				sessionId = data.session;
 				token = data.token;
 			
@@ -268,8 +234,6 @@ var OpenTok = function() {
 					alert("You don't have the minimum requirements to run this application."
 						  + "Please upgrade to the latest version of Flash.");
 				} else {
-					console.log("about to create session");
-					//session = TB.initSession('1_MX4wfn4yMDEyLTA0LTA3IDE5OjU1OjU3LjA4NDAxOSswMDowMH4wLjgwODg5NTk2MzU5Nn4');
 					session = TB.initSession(sessionId);	// Initialize session
 			
 					// Add event listeners to the session

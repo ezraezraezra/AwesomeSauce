@@ -1,7 +1,18 @@
 <?php
-
 	define('306799199381663', '306799199381663');
-
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */	
+	
 	//uses the PHP SDK.  Download from https://github.com/facebook/php-sdk
 	require 'lib/facebook.php';
 	

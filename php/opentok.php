@@ -1,6 +1,18 @@
 <?php
 	require_once 'lib/API_Config.php';
 	require_once 'lib/OpenTokSDK.php';
+/**
+ * @author Ezra Velazquez
+ * 
+ * Project:     AwesomeSauce
+ * Description: Live telepresence micro-workshop platform          
+ * Website:     http://awsmsauce.org
+ * 
+ * Author:      Ezra Velazquez
+ * Website:     http://ezraezraezra.com
+ * Date:        May 2011
+ * 
+ */
 	
 	class OpenTok {
 		
